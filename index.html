@@ -39,46 +39,109 @@
             padding: 16px 56px; border-color: var(--border);
         }
         .nav-brand { display: flex; flex-direction: column; gap: 2px; text-decoration: none; }
-        .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--cream); line-height: 1; transition: color 0.4s; }
-        .nav-tagline { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 1px; color: rgba(255,255,255,0.5); transition: color 0.4s; }
-        #navbar.scrolled .nav-logo { color: var(--green-dark); }
-        #navbar.scrolled .nav-tagline { color: var(--gray); }
+        .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--green-dark); line-height: 1; transition: color 0.4s; }
+        .nav-tagline { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 1px; color: var(--gray); transition: color 0.4s; }
         .nav-center { display: flex; gap: 40px; list-style: none; }
-        .nav-center a { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; color: rgba(255,255,255,0.75); transition: color 0.3s; }
-        #navbar.scrolled .nav-center a { color: var(--black); }
-        .nav-center a:hover { color: var(--white) !important; }
-        #navbar.scrolled .nav-center a:hover { color: var(--green-mid) !important; }
+        .nav-center a { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; color: var(--black); transition: color 0.3s; }
+        .nav-center a:hover { color: var(--green-mid) !important; }
         .nav-right { display: flex; align-items: center; gap: 12px; }
-        .nav-cta { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; padding: 10px 24px; border: 1px solid rgba(255,255,255,0.45); color: var(--white); transition: all 0.3s; }
-        #navbar.scrolled .nav-cta { border-color: var(--green-dark); color: var(--green-dark); }
-        .nav-cta:hover { background: rgba(255,255,255,0.15); }
-        #navbar.scrolled .nav-cta:hover { background: var(--green-dark); color: var(--white); }
+        .nav-cta { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; padding: 10px 24px; border: 1px solid var(--green-dark); color: var(--green-dark); transition: all 0.3s; }
+        .nav-cta:hover { background: var(--green-dark); color: var(--white); }
         .lang-toggle {
             font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
-            padding: 7px 12px; border: 1px solid rgba(255,255,255,0.35); background: none;
-            color: rgba(255,255,255,0.65); cursor: pointer; transition: all 0.3s; text-transform: uppercase;
+            padding: 7px 12px; border: 1px solid var(--border); background: none;
+            color: var(--gray); cursor: pointer; transition: all 0.3s; text-transform: uppercase;
         }
-        #navbar.scrolled .lang-toggle { border-color: var(--border); color: var(--gray); }
-        .lang-toggle:hover { background: rgba(255,255,255,0.12); color: var(--white); }
-        #navbar.scrolled .lang-toggle:hover { background: var(--green-tint); color: var(--green-dark); }
+        .lang-toggle:hover { background: var(--green-tint); color: var(--green-dark); }
 
         /* HERO */
-        .hero { min-height: 100vh; position: relative; display: flex; flex-direction: column; overflow: hidden; }
-        .hero-bg { position: absolute; inset: 0; background-color: var(--green-dark); background-image: url('images/hero.jpg'); background-size: cover; background-position: center 35%; }
-        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(27,58,24,0.15) 0%, rgba(27,58,24,0.25) 35%, rgba(27,58,24,0.82) 100%); }
-        .hero-body { position: relative; z-index: 1; margin-top: auto; padding: 0 56px 72px; display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; }
-        .hero-left { flex: 1; }
-        .hero-label { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--green-pale); margin-bottom: 24px; }
-        .hero-label::before { content: ''; width: 28px; height: 1px; background: currentColor; opacity: 0.5; }
-        .hero-title { font-family: 'DM Serif Display', serif; font-size: clamp(72px, 11vw, 150px); line-height: 0.88; color: var(--cream); letter-spacing: -3px; margin-bottom: 28px; }
-        .hero-title .it { font-style: italic; color: var(--green-pale); }
-        .hero-slogan { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(15px, 1.4vw, 20px); line-height: 1.5; color: rgba(255,255,255,0.55); max-width: 400px; border-left: 2px solid rgba(200,221,184,0.3); padding-left: 16px; }
-        .hero-right { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; flex-shrink: 0; }
-        .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
-        .btn-primary { display: inline-flex; align-items: center; gap: 12px; background: var(--cream); color: var(--green-dark); padding: 17px 36px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; transition: background 0.3s, transform 0.2s; white-space: nowrap; }
+        .hero {
+            min-height: 100vh;
+            background: var(--white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 48px 56px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-title-wrap {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            margin-bottom: -48px;
+            padding: 0 24px;
+        }
+        .hero-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(64px, 10vw, 140px);
+            line-height: 0.92;
+            color: var(--green-dark);
+            letter-spacing: -3px;
+            text-shadow: 0 0 60px rgba(255,255,255,1), 0 0 30px rgba(255,255,255,0.95);
+        }
+        .hero-title .it { font-style: italic; color: var(--green-mid); }
+        .hero-image-wrap {
+            position: relative;
+            z-index: 1;
+            width: 90%;
+            max-width: 1300px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.14);
+            aspect-ratio: 16/10;
+        }
+        .hero-image-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 35%;
+            display: block;
+        }
+        .hero-image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 35%, rgba(255,255,255,0) 65%, rgba(255,255,255,0.2) 100%);
+            border-radius: 24px;
+        }
+        .hero-bottom {
+            width: 90%;
+            max-width: 1300px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 32px;
+            margin-top: 36px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+        .hero-bottom-item { display: flex; flex-direction: column; gap: 4px; }
+        .hero-bottom-item:nth-child(2) { text-align: center; align-items: center; }
+        .hero-bottom-item:nth-child(3) { text-align: right; align-items: flex-end; }
+        .hero-bottom-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 6px;
+        }
+        .hero-bottom-text {
+            font-family: 'DM Serif Display', serif;
+            font-size: 16px;
+            color: var(--green-dark);
+            line-height: 1.4;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: nowrap;
+            margin-top: 6px;
+        }
+        .btn-primary { display: inline-flex; align-items: center; gap: 12px; background: var(--cream); color: var(--green-dark); padding: 17px 36px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; transition: background 0.3s, transform 0.2s; white-space: nowrap; border-radius: 4px; }
         .btn-primary:hover { background: var(--green-pale); transform: translateY(-2px); }
-        .btn-secondary { display: inline-flex; align-items: center; gap: 12px; background: transparent; color: var(--cream); padding: 17px 36px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(255,255,255,0.35); transition: background 0.3s, transform 0.2s; white-space: nowrap; }
-        .btn-secondary:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+        .btn-secondary { display: inline-flex; align-items: center; gap: 12px; background: transparent; color: var(--green-dark); padding: 17px 36px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; border: 1px solid var(--green-dark); transition: background 0.3s, transform 0.2s, color 0.3s; white-space: nowrap; border-radius: 4px; }
+        .btn-secondary:hover { background: var(--green-dark); color: var(--white); transform: translateY(-2px); }
 
         /* MARQUEE */
         .marquee-wrap { overflow: hidden; background: var(--green-mid); padding: 14px 0; }
@@ -219,8 +282,8 @@
         .hours-table td:first-child { color: var(--gray); }
         .hours-table td:last-child { text-align: right; font-weight: 500; }
 
-        /* CONTACT — light, no black */
-        #contact { background: var(--green-tint); display: grid; grid-template-columns: 1fr 1fr; }
+        /* CONTACT */
+        #contact { background: var(--white); display: grid; grid-template-columns: 1fr 1fr; }
         .contact-info { padding: 100px 64px; border-right: 1px solid var(--border); }
         .contact-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--green-mid); margin-bottom: 20px; }
         .contact-title { font-family: 'DM Serif Display', serif; font-size: clamp(36px, 4.5vw, 56px); line-height: 1.0; color: var(--black); letter-spacing: -1.5px; margin-bottom: 24px; }
@@ -246,7 +309,7 @@
         .fsubmit.sent { background: var(--green-light); }
 
         /* FOOTER — light green, no black */
-        footer { background: var(--green-tint); border-top: 1px solid var(--border); padding: 40px 56px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+        footer { background: var(--white); border-top: 1px solid var(--border); padding: 40px 56px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
         .footer-logo { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 30px; letter-spacing: 3px; text-transform: uppercase; color: var(--green-dark); }
         .footer-sub { font-family: 'Cormorant Garamond', serif; font-size: 12px; font-style: italic; color: var(--green-mid); margin-top: 4px; letter-spacing: 1px; }
         .footer-nav { display: flex; gap: 36px; list-style: none; }
@@ -278,15 +341,17 @@
             #navbar { padding: 20px 24px; }
             #navbar.scrolled { padding: 14px 24px; }
             .nav-center, .nav-cta { display: none; }
-            .hero-body { padding: 0 24px 52px; flex-direction: column; align-items: flex-start; gap: 24px; }
-            .hero-right { align-items: flex-start; }
-            .hero-actions { justify-content: flex-start; }
+            .hero { padding: 100px 20px 48px; }
+            .hero-title { letter-spacing: -1px; }
+            .hero-bottom { grid-template-columns: 1fr; gap: 24px; }
+            .hero-bottom-item:nth-child(2),
+            .hero-bottom-item:nth-child(3) { text-align: left; align-items: flex-start; }
             .section, .about, .cakes { padding: 72px 24px; }
             .menu-header { flex-direction: column; align-items: flex-start; gap: 16px; }
             .menu-item { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px; }
             .cakes-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
-            .features { grid-template-columns: 1fr; }
-            .feature { border-right: none !important; }
+            .features { grid-template-columns: 1fr 1fr; }
+            .feature { border-right: none !important; border-bottom: 1px solid rgba(0,0,0,0.07) !important; }
             .reviews { padding: 72px 24px; }
             .reviews-header { flex-direction: column; align-items: flex-start; gap: 24px; }
             .reviews-grid { grid-template-columns: 1fr; }
@@ -321,23 +386,33 @@
 
 <!-- HERO -->
 <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-body">
-        <div class="hero-left">
-            <p class="hero-label" data-i18n="hero.label">Belgrade's Matcha Bar</p>
-            <h1 class="hero-title" data-i18n-html="hero.title">Pure.<br><span class="it">Fresh.</span><br>Matcha.</h1>
-            <p class="hero-slogan" data-i18n="hero.slogan">"If matcha tastes like grass then I'm a cow."</p>
+    <div class="hero-title-wrap">
+        <h1 class="hero-title" data-i18n-html="hero.title">Pure.<br><span class="it">Fresh.</span><br>Matcha.</h1>
+    </div>
+    <div class="hero-image-wrap">
+        <img src="images/hero.jpg" alt="Dora Matcha Bar">
+        <div class="hero-image-overlay"></div>
+    </div>
+    <div class="hero-bottom">
+        <div class="hero-bottom-item">
+            <span class="hero-bottom-label" data-i18n="hero.label">Belgrade's Matcha Bar</span>
+            <span class="hero-bottom-text" data-i18n="hero.slogan">"If matcha tastes like grass<br>then I'm a cow."</span>
         </div>
-        <div class="hero-right">
-            <div class="hero-actions">
-                <a href="#menu" class="btn-primary" data-i18n="hero.cta1">
-                    Explore Menu
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </a>
-                <a href="#cakes" class="btn-secondary" data-i18n="hero.cta2">New: Realistic Cakes</a>
-            </div>
+        <div class="hero-bottom-item">
+            <span class="hero-bottom-label" data-i18n="hero.hours.label">Visit Our Matcha Bar</span>
+            <span class="hero-bottom-text" data-i18n="hero.hours">Open 10:00 — 18:30<br>Every Day</span>
         </div>
+        <div class="hero-bottom-item">
+            <span class="hero-bottom-label" data-i18n="hero.address.label">Find Us</span>
+            <span class="hero-bottom-text">Hercegovačka 14a<br>Beograd 11000</span>
+        </div>
+    </div>
+    <div class="hero-actions" style="width:75%;max-width:1100px;margin-top:24px;justify-content:center;">
+        <a href="#menu" class="btn-primary" data-i18n="hero.cta1">
+            Explore Menu
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#cakes" class="btn-secondary" data-i18n="hero.cta2">Onze nieuwe cakes</a>
     </div>
 </section>
 
@@ -481,8 +556,8 @@
     </div>
     <div class="feature reveal reveal-d3">
         <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-        <div class="feat-title" data-i18n="feat4.title">Central Belgrade</div>
-        <div class="feat-desc" data-i18n="feat4.desc">Easy to reach at Hercegovačka 14a, right in the heart of the city.</div>
+        <div class="feat-title" data-i18n="feat4.title">Belgrade Waterfront</div>
+        <div class="feat-desc" data-i18n="feat4.desc">Easy to reach at Hercegovačka 14a, right in the heart of Belgrade Waterfront.</div>
     </div>
 </div>
 
@@ -587,8 +662,8 @@
 <!-- LOCATION -->
 <section id="location">
     <div class="location-map-wrap">
-        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=20.4685,44.7990,20.4800,44.8090&layer=mapnik&marker=44.8040,20.4740" allowfullscreen="" loading="lazy" title="Dora Matcha Bar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"></iframe>
-        <div class="map-fallback" style="display:none;">
+        <iframe id="mapFrame" src="https://www.openstreetmap.org/export/embed.html?bbox=20.4582,44.7962,20.4732,44.8062&layer=mapnik&marker=44.8012,20.4657" allowfullscreen="" loading="lazy" title="Dora Matcha Bar — Hercegovačka 14a"></iframe>
+        <div class="map-fallback" id="mapFallback" style="display:none;">
             <div class="map-fallback-pin">📍</div>
             <div class="map-fallback-address">Hercegovačka 14a<br>Belgrade, Serbia</div>
             <a href="https://maps.google.com/?q=Hercegovacka+14a+Beograd" target="_blank" rel="noopener" class="map-fallback-link">Open in Google Maps →</a>
