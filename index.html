@@ -160,6 +160,7 @@
 
         /* MENU */
         #menu { background: var(--cream); }
+        .menu-body { padding: 32px 56px 110px; background: var(--cream); }
         .menu-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; }
         .tabs { display: flex; border-bottom: 1px solid var(--border); }
         .tab-btn { padding: 13px 28px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); background: none; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; cursor: pointer; transition: color 0.25s, border-color 0.25s; }
@@ -343,10 +344,14 @@
             .nav-center, .nav-cta { display: none; }
             .hero { padding: 100px 20px 48px; }
             .hero-title { letter-spacing: -1px; }
-            .hero-bottom { grid-template-columns: 1fr; gap: 24px; }
+            .hero-bottom { grid-template-columns: 1fr; gap: 24px; width: 92%; }
             .hero-bottom-item:nth-child(2),
             .hero-bottom-item:nth-child(3) { text-align: left; align-items: flex-start; }
+            .hero-actions { flex-wrap: wrap; width: 92%; }
+            .hero-actions .btn-primary,
+            .hero-actions .btn-secondary { flex: 1; justify-content: center; padding: 15px 20px; }
             .section, .about, .cakes { padding: 72px 24px; }
+            .menu-body { padding: 24px 24px 72px; }
             .menu-header { flex-direction: column; align-items: flex-start; gap: 16px; }
             .menu-item { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px; }
             .cakes-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
@@ -444,7 +449,7 @@
         <a href="#contact" class="text-link" data-i18n="menu.link">Visit us &rarr;</a>
     </div>
 </section>
-<div style="padding:32px 56px 110px;background:var(--cream);">
+<div class="menu-body">
     <div class="tabs">
         <button class="tab-btn active" data-tab="matcha" data-i18n="menu.tab.matcha">Matcha</button>
         <button class="tab-btn" data-tab="coffee" data-i18n="menu.tab.coffee">Coffee</button>
