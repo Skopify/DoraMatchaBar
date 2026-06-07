@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
@@ -189,10 +191,10 @@
         .cakes-title .it { font-style: italic; }
         .cakes-desc { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.55); max-width: 540px; margin-bottom: 64px; }
         .cakes-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 16px; }
-        .cake-card { display: flex; flex-direction: column; align-items: center; gap: 14px; cursor: default; }
-        .cake-visual { width: 100%; aspect-ratio: 1; border-radius: 50%; overflow: hidden; position: relative; transition: transform 0.35s cubic-bezier(.34,1.56,.64,1), box-shadow 0.35s; box-shadow: 0 8px 28px rgba(0,0,0,0.25); }
-        .cake-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
-        .cake-card:hover .cake-visual { transform: translateY(-10px) scale(1.06); box-shadow: 0 20px 48px rgba(0,0,0,0.35); }
+        .cake-card { display: flex; flex-direction: column; align-items: center; gap: 12px; cursor: default; }
+        .cake-visual { width: 100%; aspect-ratio: 1; position: relative; transition: transform 0.35s cubic-bezier(.34,1.56,.64,1); display: flex; align-items: center; justify-content: center; }
+        .cake-visual img { width: 100%; height: 100%; object-fit: contain; object-position: center bottom; display: block; }
+        .cake-card:hover .cake-visual { transform: translateY(-10px) scale(1.06); }
         .cake-name { font-family: 'DM Serif Display', serif; font-size: 15px; color: rgba(255,255,255,0.8); text-align: center; }
         .cakes-note { margin-top: 48px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 13px; color: rgba(255,255,255,0.38); letter-spacing: 0.5px; }
 
@@ -267,7 +269,7 @@
         .map-fallback-address { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--white); line-height: 1.3; }
         .map-fallback-link { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--white); text-decoration: none; border: 1px solid rgba(255,255,255,0.35); padding: 12px 24px; transition: background 0.25s; }
         .map-fallback-link:hover { background: rgba(255,255,255,0.12); }
-        .location-info { padding: 80px 64px; background: var(--cream); display: flex; flex-direction: column; justify-content: center; gap: 48px; }
+        .location-info { padding: 80px 64px; background: var(--white); display: flex; flex-direction: column; justify-content: center; gap: 48px; }
         .loc-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--green-mid); margin-bottom: 14px; }
         .loc-value { font-family: 'DM Serif Display', serif; font-size: 30px; line-height: 1.2; color: var(--black); }
         .hours-table { width: 100%; border-collapse: collapse; }
@@ -397,7 +399,7 @@
         </div>
         <div class="hero-bottom-item">
             <span class="hero-bottom-label" data-i18n="hero.hours.label">Visit Our Matcha Bar</span>
-            <span class="hero-bottom-text" data-i18n="hero.hours">Open 10:00 — 18:30<br>Every Day</span>
+            <span class="hero-bottom-text" data-i18n-html="hero.hours">Open 10:00 — 18:30<br>Every Day</span>
         </div>
         <div class="hero-bottom-item">
             <span class="hero-bottom-label" data-i18n="hero.address.label">Find Us</span>
@@ -460,7 +462,7 @@
     <p class="cakes-desc reveal" data-i18n="cakes.desc">Handcrafted hyper-realistic cakes that look exactly like their fruit namesakes. Each one a little work of edible art — too beautiful to eat, too delicious not to.</p>
     <div class="cakes-grid">
         <div class="cake-card reveal">
-            <div class="cake-visual"><img src="images/coffee cake.heic" alt="Coffee cake"></div>
+            <div class="cake-visual"><img src="images/cake coffee.png" alt="Coffee cake"></div>
             <div class="cake-name" data-i18n="cake.coffee">Coffee</div>
         </div>
         <div class="cake-card reveal reveal-d1">
@@ -468,11 +470,11 @@
             <div class="cake-name" data-i18n="cake.pistachio">Pistachio</div>
         </div>
         <div class="cake-card reveal reveal-d2">
-            <div class="cake-visual"><img src="images/blueberry cake.heic" alt="Blueberry cake"></div>
+            <div class="cake-visual"><img src="images/cake blueberry.png" alt="Blueberry cake"></div>
             <div class="cake-name" data-i18n="cake.blueberry">Blueberry</div>
         </div>
         <div class="cake-card reveal reveal-d3">
-            <div class="cake-visual"><img src="images/peach cake.heic" alt="Peach cake"></div>
+            <div class="cake-visual"><img src="images/cake peach.png" alt="Peach cake"></div>
             <div class="cake-name" data-i18n="cake.peach">Peach</div>
         </div>
         <div class="cake-card reveal reveal-d4">
@@ -480,7 +482,7 @@
             <div class="cake-name" data-i18n="cake.strawberry">Strawberry</div>
         </div>
         <div class="cake-card reveal">
-            <div class="cake-visual"><img src="images/mango cake.heic" alt="Mango cake"></div>
+            <div class="cake-visual"><img src="images/cake mango.png" alt="Mango cake"></div>
             <div class="cake-name" data-i18n="cake.mango">Mango</div>
         </div>
         <div class="cake-card reveal reveal-d1">
@@ -488,7 +490,7 @@
             <div class="cake-name" data-i18n="cake.raspberry">Raspberry</div>
         </div>
         <div class="cake-card reveal reveal-d2">
-            <div class="cake-visual"><img src="images/banaan cake.heic" alt="Banana cake"></div>
+            <div class="cake-visual"><img src="images/cake banana.png" alt="Banana cake"></div>
             <div class="cake-name" data-i18n="cake.banana">Banana</div>
         </div>
     </div>
@@ -663,12 +665,7 @@
 <!-- LOCATION -->
 <section id="location">
     <div class="location-map-wrap">
-        <iframe id="mapFrame" src="https://www.openstreetmap.org/export/embed.html?bbox=20.4582,44.7962,20.4732,44.8062&layer=mapnik&marker=44.8012,20.4657" allowfullscreen="" loading="lazy" title="Dora Matcha Bar — Hercegovačka 14a"></iframe>
-        <div class="map-fallback" id="mapFallback" style="display:none;">
-            <div class="map-fallback-pin">📍</div>
-            <div class="map-fallback-address">Hercegovačka 14a<br>Belgrade, Serbia</div>
-            <a href="https://maps.google.com/?q=Hercegovacka+14a+Beograd" target="_blank" rel="noopener" class="map-fallback-link">Open in Google Maps →</a>
-        </div>
+        <div id="doraMap" style="width:100%;height:100%;"></div>
     </div>
     <div class="location-info">
         <div class="reveal">
@@ -780,7 +777,7 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 const translations = {
     en: {
         'nav.tagline':'Pure. Fresh. Matcha.','nav.menu':'Menu','nav.cakes':'Cakes','nav.story':'Our Story','nav.visit':'Visit','nav.cta':'Get in touch',
-        'hero.label':"Belgrade's Matcha Bar",'hero.title':'Pure.<br><span class="it">Fresh.</span><br>Matcha.','hero.slogan':'"If matcha tastes like grass then I\'m a cow."','hero.cta1':'Explore Menu','hero.cta2':'New: Realistic Cakes',
+        'hero.label':"Belgrade's Matcha Bar",'hero.title':'Pure.<br><span class="it">Fresh.</span><br>Matcha.','hero.slogan':'"If matcha tastes like grass then I\'m a cow."','hero.cta1':'Explore Menu','hero.cta2':'New: Realistic Cakes','hero.hours.label':'Visit Our Matcha Bar','hero.hours':'Open 10:00 — 18:30<br>Every Day','hero.address.label':'Find Us',
         'menu.eyebrow':'What we serve','menu.title':'menu','menu.link':'Visit us →','menu.tab.matcha':'Matcha','menu.tab.coffee':'Coffee','menu.tab.extras':'Extras',
         'cakes.badge':'✦ New','cakes.eyebrow':'Just arrived','cakes.title':'Realistic<br><span class="it">Cakes</span>','cakes.desc':'Handcrafted hyper-realistic cakes that look exactly like their fruit namesakes. Each one a little work of edible art — too beautiful to eat, too delicious not to.','cakes.note':'Available in-store · Limited quantities daily · Ask our team for today\'s selection',
         'cake.coffee':'Coffee','cake.pistachio':'Pistachio','cake.blueberry':'Blueberry','cake.peach':'Peach','cake.strawberry':'Strawberry','cake.mango':'Mango','cake.raspberry':'Raspberry',
@@ -854,6 +851,29 @@ function setLanguage(lang) {
     document.getElementById('langToggle').textContent = lang === 'en' ? 'SR' : 'EN';
     document.documentElement.lang = lang === 'sr' ? 'sr' : 'en';
 }
+
+/* ---- Leaflet map ---- */
+(function() {
+    var map = L.map('doraMap', { zoomControl: true, scrollWheelZoom: false }).setView([44.8094, 20.4498], 16);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
+    }).addTo(map);
+
+    var icon = L.divIcon({
+        className: '',
+        html: '<div style="width:18px;height:18px;background:#1B3A18;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.3);"></div>',
+        iconSize: [18, 18],
+        iconAnchor: [9, 9]
+    });
+
+    L.marker([44.8094, 20.4498], { icon: icon })
+        .addTo(map)
+        .bindPopup('<strong style="font-family:serif;font-size:14px;">Dora Matcha Bar</strong><br>Hercegovačka 14a, Beograd')
+        .openPopup();
+})();
 
 function toggleLanguage() {
     setLanguage(currentLang === 'en' ? 'sr' : 'en');
