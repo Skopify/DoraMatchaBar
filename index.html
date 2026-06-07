@@ -188,18 +188,11 @@
         .cakes-title { font-family: 'DM Serif Display', serif; font-size: clamp(44px, 7vw, 88px); line-height: 0.95; letter-spacing: -2.5px; color: var(--cream); margin-bottom: 20px; }
         .cakes-title .it { font-style: italic; }
         .cakes-desc { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.55); max-width: 540px; margin-bottom: 64px; }
-        .cakes-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 16px; }
+        .cakes-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 16px; }
         .cake-card { display: flex; flex-direction: column; align-items: center; gap: 14px; cursor: default; }
-        .cake-visual { width: 100%; aspect-ratio: 1; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative; transition: transform 0.35s cubic-bezier(.34,1.56,.64,1), box-shadow 0.35s; box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 -6px 16px rgba(0,0,0,0.2); }
-        .cake-card:hover .cake-visual { transform: translateY(-10px) scale(1.06); box-shadow: 0 20px 48px rgba(0,0,0,0.4), inset 0 -6px 16px rgba(0,0,0,0.2); }
-        .cake-visual::after { content: ''; position: absolute; top: 12%; left: 16%; width: 28%; height: 18%; background: rgba(255,255,255,0.22); border-radius: 50%; filter: blur(4px); }
-        .cake-coffee    { background: radial-gradient(circle at 35% 30%, #8D5E3A, #3E1C0B 75%); }
-        .cake-pistachio { background: radial-gradient(circle at 35% 30%, #96C15B, #3E6B1A 75%); }
-        .cake-blueberry { background: radial-gradient(circle at 35% 30%, #9B80D4, #42256E 75%); }
-        .cake-peach     { background: radial-gradient(circle at 35% 30%, #FFBA7A, #E85D1A 75%); }
-        .cake-strawberry{ background: radial-gradient(circle at 35% 30%, #FF8080, #C01A1A 75%); }
-        .cake-mango     { background: radial-gradient(circle at 35% 30%, #FFD76E, #E06900 75%); }
-        .cake-raspberry { background: radial-gradient(circle at 35% 30%, #F08090, #9C0838 75%); }
+        .cake-visual { width: 100%; aspect-ratio: 1; border-radius: 50%; overflow: hidden; position: relative; transition: transform 0.35s cubic-bezier(.34,1.56,.64,1), box-shadow 0.35s; box-shadow: 0 8px 28px rgba(0,0,0,0.25); }
+        .cake-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+        .cake-card:hover .cake-visual { transform: translateY(-10px) scale(1.06); box-shadow: 0 20px 48px rgba(0,0,0,0.35); }
         .cake-name { font-family: 'DM Serif Display', serif; font-size: 15px; color: rgba(255,255,255,0.8); text-align: center; }
         .cakes-note { margin-top: 48px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 13px; color: rgba(255,255,255,0.38); letter-spacing: 0.5px; }
 
@@ -326,7 +319,7 @@
 
         /* RESPONSIVE */
         @media (max-width: 1100px) {
-            .cakes-grid { grid-template-columns: repeat(4, 1fr); }
+            .cakes-grid { grid-template-columns: repeat(4, 1fr); gap: 12px; }
             .about-inner { grid-template-columns: 1fr; gap: 56px; }
             .features { grid-template-columns: 1fr 1fr; }
             .feature { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.07); }
@@ -354,7 +347,7 @@
             .menu-body { padding: 24px 24px 72px; }
             .menu-header { flex-direction: column; align-items: flex-start; gap: 16px; }
             .menu-item { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px; }
-            .cakes-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+            .cakes-grid { grid-template-columns: repeat(4, 1fr); gap: 10px; }
             .features { grid-template-columns: 1fr 1fr; }
             .feature { border-right: none !important; border-bottom: 1px solid rgba(0,0,0,0.07) !important; }
             .reviews { padding: 72px 24px; }
@@ -384,8 +377,7 @@
         <li><a href="#location" data-i18n="nav.visit">Visit</a></li>
     </ul>
     <div class="nav-right">
-        <button class="lang-toggle" id="langToggle" onclick="toggleLanguage()">СР</button>
-        <a href="#contact" class="nav-cta" data-i18n="nav.cta">Get in touch</a>
+        <button class="lang-toggle" id="langToggle" onclick="toggleLanguage()">SR</button>
     </div>
 </nav>
 
@@ -468,32 +460,36 @@
     <p class="cakes-desc reveal" data-i18n="cakes.desc">Handcrafted hyper-realistic cakes that look exactly like their fruit namesakes. Each one a little work of edible art — too beautiful to eat, too delicious not to.</p>
     <div class="cakes-grid">
         <div class="cake-card reveal">
-            <div class="cake-visual cake-coffee"></div>
+            <div class="cake-visual"><img src="images/coffee cake.heic" alt="Coffee cake"></div>
             <div class="cake-name" data-i18n="cake.coffee">Coffee</div>
         </div>
         <div class="cake-card reveal reveal-d1">
-            <div class="cake-visual cake-pistachio"></div>
+            <div class="cake-visual"><img src="images/cake pistache.png" alt="Pistachio cake"></div>
             <div class="cake-name" data-i18n="cake.pistachio">Pistachio</div>
         </div>
         <div class="cake-card reveal reveal-d2">
-            <div class="cake-visual cake-blueberry"></div>
+            <div class="cake-visual"><img src="images/blueberry cake.heic" alt="Blueberry cake"></div>
             <div class="cake-name" data-i18n="cake.blueberry">Blueberry</div>
         </div>
         <div class="cake-card reveal reveal-d3">
-            <div class="cake-visual cake-peach"></div>
+            <div class="cake-visual"><img src="images/peach cake.heic" alt="Peach cake"></div>
             <div class="cake-name" data-i18n="cake.peach">Peach</div>
         </div>
         <div class="cake-card reveal reveal-d4">
-            <div class="cake-visual cake-strawberry"></div>
+            <div class="cake-visual"><img src="images/cake strawberry.png" alt="Strawberry cake"></div>
             <div class="cake-name" data-i18n="cake.strawberry">Strawberry</div>
         </div>
         <div class="cake-card reveal">
-            <div class="cake-visual cake-mango"></div>
+            <div class="cake-visual"><img src="images/mango cake.heic" alt="Mango cake"></div>
             <div class="cake-name" data-i18n="cake.mango">Mango</div>
         </div>
         <div class="cake-card reveal reveal-d1">
-            <div class="cake-visual cake-raspberry"></div>
+            <div class="cake-visual"><img src="images/cake rasberry.png" alt="Raspberry cake"></div>
             <div class="cake-name" data-i18n="cake.raspberry">Raspberry</div>
+        </div>
+        <div class="cake-card reveal reveal-d2">
+            <div class="cake-visual"><img src="images/banaan cake.heic" alt="Banana cake"></div>
+            <div class="cake-name" data-i18n="cake.banana">Banana</div>
         </div>
     </div>
     <p class="cakes-note" data-i18n="cakes.note">Available in-store · Limited quantities daily · Ask our team for today's selection</p>
@@ -689,50 +685,16 @@
         </div>
         <div class="reveal">
             <p class="loc-label" data-i18n="loc.follow">Follow Us</p>
-            <p class="loc-value" style="font-size:22px;">@doramatchabar</p>
+            <p class="loc-value" style="font-size:20px;margin-bottom:16px;">@doramatchabar</p>
+            <div class="socials">
+                <a href="https://instagram.com/doramatchabar" target="_blank" rel="noopener" class="social-btn" title="Instagram">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="https://tiktok.com/@doramatchabar" target="_blank" rel="noopener" class="social-btn" title="TikTok">
+                    <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.86 4.86 0 0 1-1.01-.07z"/></svg>
+                </a>
+            </div>
         </div>
-    </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-    <div class="contact-info">
-        <p class="contact-eyebrow reveal" data-i18n="contact.eyebrow">Get in touch</p>
-        <h2 class="contact-title reveal" data-i18n-html="contact.title">Come visit or<br>drop us a <span class="it">message</span></h2>
-        <p class="contact-desc reveal" data-i18n="contact.desc">Questions about our menu, events, or catering? We'd love to hear from you.</p>
-        <div class="contact-details reveal">
-            <div class="contact-detail"><span class="detail-dot"></span>Hercegovačka 14a, Beograd</div>
-            <div class="contact-detail"><span class="detail-dot"></span><span data-i18n="contact.hours">Every day, 10:00 – 18:30</span></div>
-        </div>
-        <div class="socials reveal">
-            <a href="https://instagram.com/doramatchabar" target="_blank" rel="noopener" class="social-btn" title="Instagram">
-                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            </a>
-            <a href="https://tiktok.com/@doramatchabar" target="_blank" rel="noopener" class="social-btn" title="TikTok">
-                <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.86 4.86 0 0 1-1.01-.07z"/></svg>
-            </a>
-        </div>
-    </div>
-    <div class="contact-form-wrap">
-        <form class="cform" id="contactForm">
-            <div class="fgroup">
-                <label class="flabel" data-i18n="form.name">Name</label>
-                <input type="text" class="finput" data-i18n-placeholder="form.name.ph" placeholder="Your name" required>
-            </div>
-            <div class="fgroup">
-                <label class="flabel" data-i18n="form.email">Email</label>
-                <input type="email" class="finput" data-i18n-placeholder="form.email.ph" placeholder="your@email.com" required>
-            </div>
-            <div class="fgroup">
-                <label class="flabel" data-i18n="form.phone">Phone (optional)</label>
-                <input type="tel" class="finput" placeholder="+381 60 000 0000">
-            </div>
-            <div class="fgroup">
-                <label class="flabel" data-i18n="form.message">Message</label>
-                <textarea class="ftextarea" data-i18n-placeholder="form.message.ph" placeholder="How can we help?" required></textarea>
-            </div>
-            <button type="submit" class="fsubmit" id="submitBtn" data-i18n="form.submit">Send message</button>
-        </form>
     </div>
 </section>
 
@@ -747,7 +709,6 @@
         <li><a href="#cakes" data-i18n="nav.cakes">Cakes</a></li>
         <li><a href="#about" data-i18n="nav.story">Our Story</a></li>
         <li><a href="#location" data-i18n="nav.visit">Visit</a></li>
-        <li><a href="#contact" data-i18n="nav.cta">Get in touch</a></li>
     </ul>
     <p class="footer-copy">&copy; 2026 Dora Matcha Bar</p>
 </footer>
@@ -844,30 +805,28 @@ const translations = {
         'footer.tagline':'Pure. Fresh. Matcha.',
     },
     sr: {
-        'nav.tagline':'Чисто. Свеже. Матча.','nav.menu':'Мени','nav.cakes':'Торте','nav.story':'Наша прича','nav.visit':'Посетите','nav.cta':'Контакт',
-        'hero.label':'Матча бар у Београду','hero.title':'Чисто.<br><span class="it">Свеже.</span><br>Матча.','hero.slogan':'"Ако матча има укус траве, онда сам ја крава."','hero.cta1':'Погледај мени','hero.cta2':'Ново: Реалистичне торте',
-        'menu.eyebrow':'Шта послужујемо','menu.title':'мени','menu.link':'Посетите нас →','menu.tab.matcha':'Матча','menu.tab.coffee':'Кафа','menu.tab.extras':'Додаци',
-        'cakes.badge':'✦ Ново','cakes.eyebrow':'Управо пристигло','cakes.title':'Реалистичне<br><span class="it">торте</span>','cakes.desc':'Ручно рађене хипер-реалистичне торте које изгледају потпуно као право воће. Свака је мало уметничко дело — прелепе за јести, превкусне да одолите.','cakes.note':'Доступно у продавници · Ограничене количине · Питајте наш тим за данашњу понуду',
-        'cake.coffee':'Кафа','cake.pistachio':'Пистаћ','cake.blueberry':'Боровница','cake.peach':'Бресква','cake.strawberry':'Јагода','cake.mango':'Манго','cake.raspberry':'Малина',
-        'about.eyebrow':'Наша прича','about.title.accent':'пиће','about.body1':'Дора је рођена из дубоке љубави према јапанској култури чаја и жеље да подели тај тихи, свесни тренутак са Београдом. Чисто. Свеже. Матча. — није само слоган, то је начин на који радимо све.','about.body2':'Послужујемо само матчу церемонијалне врсте, пажљиво одабрану из најбољих вртова чаја у Јапану, припремљену с прецизношћу и бригом. Нема журбе. Нема буке. Само ви и ваша шоља.','about.link':'Пронађите нас →',
-        'stat1.label':'Церемонијалне врсте','stat1.desc':'Само матча највишег квалитета — никад кулинарска, увек церемонијалне врсте.',
-        'stat2.value':'Јапан','stat2.label':'Уји & Нишио','stat2.desc':'Директно из најпознатијих региона узгоја чаја у Јапану.',
-        'stat3.value':'Свака шоља','stat3.label':'Ручно рађена','stat3.desc':'Израђено по наруџбини, с прецизношћу и бригом нашег тима баристи.',
-        'stat4.value':'Зоб · Соја','stat4.label':'Биљске опције','stat4.desc':'Млеко од бадема такође доступно — свако пиће прилагодљиво.',
-        'feat1.title':'Церемонијална врста','feat1.desc':'Само матча највишег квалитета, пажљиво одабрана из најбољих вртова чаја у Јапану.',
-        'feat2.title':'Свако дан свеже','feat2.desc':'Сви састојци свежи сваки дан за савршен укус у свакој шољи.',
-        'feat3.title':'Направљено с љубављу','feat3.desc':'Свако пиће спремљено са страшћу и прецизношћу нашег посвећеног тима.',
-        'feat4.title':'Центар Београда','feat4.desc':'Лако доступно на Херцеговачкој 14а, у срцу града.',
-        'reviews.eyebrow':'Google рецензије','reviews.title':'Шта кажу наши<br><span class="it">гости</span>','reviews.source':'На основу Google рецензија',
-        'review1.text':'"Матча овде је на другом нивоу. Савршена равнотежа, церемонијалне врсте, а облак лате је нешто о чему сањам."','review1.author':'Ана М.','review1.date':'Пре 2 недеље',
-        'review2.text':'"Убедљиво најбољи матча бар у Београду. Простор је прелеп, особље је топло, а реалистичне торте су апсолутно задивљујуће."','review2.author':'Никола Т.','review2.date':'Пре месец дана',
-        'review3.text':'"Открила сам ово место прошлог месеца и враћам се сваке недеље. Матча с јагодом је апсолутно савршенство."','review3.author':'Миа Л.','review3.date':'Пре 3 недеље',
-        'review4.text':'"Коначно матча бар који заиста зна шта ради. Церемонијалне врсте, правилно припремљена. Пена је на другом нивоу."','review4.author':'Стефан В.','review4.date':'Пре месец дана',
-        'photos.eyebrow':'У Дори','photos.title':'Наша <span class="it">заједница</span>','photos.sub':'Означи нас на Инстаграму @doramatchabar — волели бисмо да те истакнемо.','photos.note':'Замените ове слике вашим фотографијама.',
-        'loc.address':'Адреса','loc.hours':'Радно време','loc.follow':'Пратите нас','hours.everyday':'Сваки дан',
-        'contact.eyebrow':'Контакт','contact.title':'Свратите или нам<br>пошаљите <span class="it">поруку</span>','contact.desc':'Питања о менију, евентима или кетерингу? Радо ћемо вас чути.','contact.hours':'Сваки дан, 10:00 – 18:30',
-        'form.name':'Ime','form.name.ph':'Ваше ime','form.email':'Imejl','form.email.ph':'vaš@email.com','form.phone':'Telefon (neobavezno)','form.message':'Poruka','form.message.ph':'Kako možemo da pomognemo?','form.submit':'Pošalji poruku','form.sent':'Poslato ✓',
-        'footer.tagline':'Чисто. Свеже. Матча.',
+        'nav.tagline':'Čisto. Sveže. Matča.','nav.menu':'Meni','nav.cakes':'Torte','nav.story':'Naša priča','nav.visit':'Posetite',
+        'hero.label':'Matča bar u Beogradu','hero.title':'Čisto.<br><span class="it">Sveže.</span><br>Matča.','hero.slogan':'"Ako matča ima ukus trave, onda sam ja krava."','hero.cta1':'Pogledaj meni','hero.cta2':'Novo: Realističне torte','hero.hours.label':'Posetite naš matča bar','hero.hours':'Otvoreno 10:00 — 18:30<br>Svaki dan','hero.address.label':'Pronađite nas',
+        'menu.eyebrow':'Šta poslužujemo','menu.title':'meni','menu.link':'Posetite nas →','menu.tab.matcha':'Matča','menu.tab.coffee':'Kafa','menu.tab.extras':'Dodaci',
+        'cakes.badge':'✦ Novo','cakes.eyebrow':'Upravo pristiglo','cakes.title':'Realističне<br><span class="it">torte</span>','cakes.desc':'Ručno rađene hiper-realističне torte koje izgledaju kao pravo voće. Svaka je malo umetničko delo — prelepе za jesti, previše ukusne da odolite.','cakes.note':'Dostupno u prodavnici · Ograničene količine · Pitajte naš tim za današnju ponudu',
+        'cake.coffee':'Kafa','cake.pistachio':'Pistać','cake.blueberry':'Borovnica','cake.peach':'Breskva','cake.strawberry':'Jagoda','cake.mango':'Mango','cake.raspberry':'Malina','cake.banana':'Banana',
+        'about.eyebrow':'Naša priča','about.title.accent':'piće','about.body1':'Dora je rođena iz duboke ljubavi prema japanskoj kulturi čaja i želje da podeli taj tihi, svesni trenutak sa Beogradom. Čisto. Sveže. Matča. — nije samo slogan, to je način na koji radimo sve.','about.body2':'Poslužujemo samo matču ceremonijalne vrste, pažljivo odabranu iz najboljih vrtova čaja u Japanu, pripremljenu s preciznošću i brigom. Nema žurbe. Nema buke. Samo vi i vaša šolja.','about.link':'Pronađite nas →',
+        'stat1.label':'Ceremonijalna vrsta','stat1.desc':'Samo matča najvišeg kvaliteta — nikad kulinarskа, uvek ceremonijalne vrste.',
+        'stat2.value':'Japan','stat2.label':'Uji & Nishio','stat2.desc':'Direktno iz najpriznatijih regiona uzgoja čaja u Japanu.',
+        'stat3.value':'Svaka šolja','stat3.label':'Ručno rađena','stat3.desc':'Izrađeno po narudžbini, s preciznošću i brigom našeg tima barista.',
+        'stat4.value':'Zob · Soja','stat4.label':'Biljske opcije','stat4.desc':'Mleko od badema takođe dostupno — svako piće prilagodljivo.',
+        'feat1.title':'Ceremonijalna vrsta','feat1.desc':'Samo matča najvišeg kvaliteta, pažljivo odabrana iz najboljih vrtova čaja u Japanu.',
+        'feat2.title':'Svaki dan sveže','feat2.desc':'Svi sastojci sveži svaki dan za savršen ukus u svakoj šolji.',
+        'feat3.title':'Napravljeno s ljubavlju','feat3.desc':'Svako piće spremljeno sa strašću i preciznošću našeg posvećenog tima.',
+        'feat4.title':'Centar Beograda','feat4.desc':'Lako dostupno na Hercegovačkoj 14a, u srcu grada.',
+        'reviews.eyebrow':'Google recenzije','reviews.title':'Šta kažu naši<br><span class="it">gosti</span>','reviews.source':'Na osnovu Google recenzija',
+        'review1.text':'"Matča ovde je na drugom nivou. Savršena ravnoteža, ceremonijalne vrste, a oblak late je nešto o čemu sanjam."','review1.author':'Ana M.','review1.date':'Pre 2 nedelje',
+        'review2.text':'"Ubedljivo najbolji matča bar u Beogradu. Prostor je prelep, osoblje je toplo, a realističне torte su apsolutno zadivljujuće."','review2.author':'Nikola T.','review2.date':'Pre mesec dana',
+        'review3.text':'"Otkrila sam ovo mesto prošlog meseca i vraćam se svake nedelje. Matča s jagodom je apsolutno savršenstvo."','review3.author':'Mia L.','review3.date':'Pre 3 nedelje',
+        'review4.text':'"Konačno matča bar koji zaista zna šta radi. Ceremonijalne vrste, pravilno pripremljena. Pena je na drugom nivou."','review4.author':'Stefan V.','review4.date':'Pre mesec dana',
+        'photos.eyebrow':'U Dori','photos.title':'Naša <span class="it">zajednica</span>','photos.sub':'Označi nas na Instagramu @doramatchabar — voleli bismo da te istaknemo.',
+        'loc.address':'Adresa','loc.hours':'Radno vreme','loc.follow':'Pratite nas','hours.everyday':'Svaki dan',
+        'footer.tagline':'Čisto. Sveže. Matča.',
     }
 };
 
@@ -892,7 +851,7 @@ function setLanguage(lang) {
     renderMenu(currentTab, lang);
     currentLang = lang;
     localStorage.setItem('dora-lang', lang);
-    document.getElementById('langToggle').textContent = lang === 'en' ? 'СР' : 'EN';
+    document.getElementById('langToggle').textContent = lang === 'en' ? 'SR' : 'EN';
     document.documentElement.lang = lang === 'sr' ? 'sr' : 'en';
 }
 
