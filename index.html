@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dora — Pure. Fresh. Matcha.</title>
+    <meta name="description" content="Dora Matcha Bar — Belgrade's home of ceremonial grade Japanese matcha. Handcrafted drinks & realistic cakes. Hercegovačka 14a, Beograd 11000.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --green-dark:  #1B3A18;
+            --green-mid:   #3D6B2A;
+            --green-light: #6B9B4A;
+            --green-pale:  #C8DDB8;
+            --green-tint:  #EBF3E2;
+            --cream:       #EDE8E0;
+            --cream-dark:  #E0D9CF;
+            --white:       #F9F8F4;
+            --black:       #111111;
+            --gray:        #6B6B6B;
+            --border:      #D8D3CA;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--black); overflow-x: hidden; }
+
+        /* NAV */
+        #navbar {
+            position: fixed; inset: 0 0 auto; z-index: 200;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 28px 56px;
+            transition: background 0.4s, padding 0.4s;
+            border-bottom: 1px solid transparent;
+        }
+        #navbar.scrolled {
+            background: rgba(237,232,224,0.96); backdrop-filter: blur(12px);
+            padding: 16px 56px; border-color: var(--border);
+        }
+        .nav-brand { display: flex; flex-direction: column; gap: 2px; text-decoration: none; }
+        .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--cream); line-height: 1; transition: color 0.4s; }
+        .nav-tagline { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 1px; color: rgba(255,255,255,0.5); transition: color 0.4s; }
+        #navbar.scrolled .nav-logo { color: var(--green-dark); }
+        #navbar.scrolled .nav-tagline { color: var(--gray); }
+        .nav-center { display: flex; gap: 40px; list-style: none; }
+        .nav-center a { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; color: rgba(255,255,255,0.75); transition: color 0.3s; }
+        #navbar.scrolled .nav-center a { color: var(--black); }
+        .nav-center a:hover { color: var(--white) !important; }
+        #navbar.scrolled .nav-center a:hover { color: var(--green-mid) !important; }
+        .nav-right { display: flex; align-items: center; gap: 12px; }
+        .nav-cta { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; padding: 10px 24px; border: 1px solid rgba(255,255,255,0.45); color: var(--white); transition: all 0.3s; }
+        #navbar.scrolled .nav-cta { border-color: var(--green-dark); color: var(--green-dark); }
+        .nav-cta:hover { background: rgba(255,255,255,0.15); }
+        #navbar.scrolled .nav-cta:hover { background: var(--green-dark); color: var(--white); }
+        .lang-toggle {
+            font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+            padding: 7px 12px; border: 1px solid rgba(255,255,255,0.35); background: none;
+            color: rgba(255,255,255,0.65); cursor: pointer; transition: all 0.3s; text-transform: uppercase;
+        }
+        #navbar.scrolled .lang-toggle { border-color: var(--border); color: var(--gray); }
+        .lang-toggle:hover { background: rgba(255,255,255,0.12); color: var(--white); }
+        #navbar.scrolled .lang-toggle:hover { background: var(--green-tint); color: var(--green-dark); }
+
+        /* HERO */
+        .hero { min-height: 100vh; position: relative; display: flex; flex-direction: column; overflow: hidden; }
+        .hero-bg { position: absolute; inset: 0; background-color: var(--green-dark); background-image: url('images/hero.jpg'); background-size: cover; background-position: center 35%; }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(27,58,24,0.15) 0%, rgba(27,58,24,0.25) 35%, rgba(27,58,24,0.82) 100%); }
+        .hero-body { position: relative; z-index: 1; margin-top: auto; padding: 0 56px 72px; display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; }
+        .hero-left { flex: 1; }
+        .hero-label { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--green-pale); margin-bottom: 24px; }
+        .hero-label::before { content: ''; width: 28px; height: 1px; background: currentColor; opacity: 0.5; }
+        .hero-title { font-family: 'DM Serif Display', serif; font-size: clamp(72px, 11vw, 150px); line-height: 0.88; color: var(--cream); letter-spacing: -3px; margin-bottom: 28px; }
+        .hero-title .it { font-style: italic; color: var(--green-pale); }
+        .hero-slogan { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(15px, 1.4vw, 20px); line-height: 1.5; color: rgba(255,255,255,0.55); max-width: 400px; border-left: 2px solid rgba(200,221,184,0.3); padding-left: 16px; }
+        .hero-right { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; flex-shrink: 0; }
+        .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
+        .btn-primary { display: inline-flex; align-items: center; gap: 12px; background: var(--cream); color: var(--green-dark); padding: 17px 36px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; transition: background 0.3s, transform 0.2s; white-space: nowrap; }
+        .btn-primary:hover { background: var(--green-pale); transform: translateY(-2px); }
+        .btn-secondary { display: inline-flex; align-items: center; gap: 12px; background: transparent; color: var(--cream); padding: 17px 36px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(255,255,255,0.35); transition: background 0.3s, transform 0.2s; white-space: nowrap; }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+        /* MARQUEE */
+        .marquee-wrap { overflow: hidden; background: var(--green-mid); padding: 14px 0; }
+        .marquee-inner { display: flex; animation: marquee 26s linear infinite; width: max-content; }
+        .marquee-item { display: inline-flex; align-items: center; gap: 20px; padding: 0 20px; font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--white); white-space: nowrap; }
+        .marquee-sep { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.4); flex-shrink: 0; }
+        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* SHARED */
+        .section { padding: 110px 56px; }
+        .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--green-mid); margin-bottom: 18px; }
+        .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(44px, 7vw, 88px); line-height: 0.95; letter-spacing: -2.5px; color: var(--black); }
+        .section-title .it { font-style: italic; }
+        .text-link { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; color: var(--green-mid); border-bottom: 1px solid var(--green-mid); padding-bottom: 3px; transition: opacity 0.2s; white-space: nowrap; }
+        .text-link:hover { opacity: 0.6; }
+
+        /* MENU */
+        #menu { background: var(--cream); }
+        .menu-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; }
+        .tabs { display: flex; border-bottom: 1px solid var(--border); }
+        .tab-btn { padding: 13px 28px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); background: none; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; cursor: pointer; transition: color 0.25s, border-color 0.25s; }
+        .tab-btn.active { color: var(--green-dark); border-bottom-color: var(--green-dark); }
+        .tab-btn:hover:not(.active) { color: var(--black); }
+        .menu-list { background: var(--white); }
+        .menu-item { display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 28px 40px; border-bottom: 1px solid var(--border); transition: background 0.25s; }
+        .menu-item:last-child { border-bottom: none; }
+        .menu-item:hover { background: var(--cream); }
+        .menu-item-info { flex: 1; }
+        .menu-item-name { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--black); margin-bottom: 4px; line-height: 1.1; }
+        .menu-item-desc { font-size: 13px; color: var(--gray); line-height: 1.5; }
+        .menu-item-tag { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green-mid); background: var(--green-tint); padding: 4px 10px; border-radius: 100px; display: inline-block; margin-top: 8px; }
+        .menu-item-prices { display: flex; gap: 32px; flex-shrink: 0; }
+        .price-block { text-align: right; }
+        .price-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 4px; }
+        .price-value { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--green-dark); white-space: nowrap; }
+        .price-single { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--green-dark); white-space: nowrap; }
+
+        /* CAKES */
+        .cakes { background: var(--green-dark); padding: 110px 56px; }
+        .cakes-header { display: flex; align-items: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap; }
+        .new-badge { display: inline-flex; align-items: center; background: #F0C84B; color: var(--green-dark); font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 6px 14px; border-radius: 100px; }
+        .cakes-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--green-pale); }
+        .cakes-title { font-family: 'DM Serif Display', serif; font-size: clamp(44px, 7vw, 88px); line-height: 0.95; letter-spacing: -2.5px; color: var(--cream); margin-bottom: 20px; }
+        .cakes-title .it { font-style: italic; }
+        .cakes-desc { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.55); max-width: 540px; margin-bottom: 64px; }
+        .cakes-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 16px; }
+        .cake-card { display: flex; flex-direction: column; align-items: center; gap: 14px; cursor: default; }
+        .cake-visual { width: 100%; aspect-ratio: 1; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative; transition: transform 0.35s cubic-bezier(.34,1.56,.64,1), box-shadow 0.35s; box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 -6px 16px rgba(0,0,0,0.2); }
+        .cake-card:hover .cake-visual { transform: translateY(-10px) scale(1.06); box-shadow: 0 20px 48px rgba(0,0,0,0.4), inset 0 -6px 16px rgba(0,0,0,0.2); }
+        .cake-visual::after { content: ''; position: absolute; top: 12%; left: 16%; width: 28%; height: 18%; background: rgba(255,255,255,0.22); border-radius: 50%; filter: blur(4px); }
+        .cake-coffee    { background: radial-gradient(circle at 35% 30%, #8D5E3A, #3E1C0B 75%); }
+        .cake-pistachio { background: radial-gradient(circle at 35% 30%, #96C15B, #3E6B1A 75%); }
+        .cake-blueberry { background: radial-gradient(circle at 35% 30%, #9B80D4, #42256E 75%); }
+        .cake-peach     { background: radial-gradient(circle at 35% 30%, #FFBA7A, #E85D1A 75%); }
+        .cake-strawberry{ background: radial-gradient(circle at 35% 30%, #FF8080, #C01A1A 75%); }
+        .cake-mango     { background: radial-gradient(circle at 35% 30%, #FFD76E, #E06900 75%); }
+        .cake-raspberry { background: radial-gradient(circle at 35% 30%, #F08090, #9C0838 75%); }
+        .cake-name { font-family: 'DM Serif Display', serif; font-size: 15px; color: rgba(255,255,255,0.8); text-align: center; }
+        .cakes-note { margin-top: 48px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 13px; color: rgba(255,255,255,0.38); letter-spacing: 0.5px; }
+
+        /* ABOUT */
+        .about { background: var(--cream); padding: 110px 56px; }
+        .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: start; }
+        .about-title { font-family: 'DM Serif Display', serif; font-size: clamp(40px, 5.5vw, 68px); line-height: 1.0; color: var(--black); letter-spacing: -2px; margin-bottom: 32px; }
+        .about-title .it { font-style: italic; }
+        .about-body { font-size: 15px; line-height: 1.8; color: var(--gray); margin-bottom: 14px; }
+        .about-link { display: inline-flex; align-items: center; gap: 10px; margin-top: 24px; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green-mid); text-decoration: none; border-bottom: 1px solid var(--green-mid); padding-bottom: 4px; transition: opacity 0.25s; }
+        .about-link:hover { opacity: 0.65; }
+        .about-stats { display: flex; flex-direction: column; }
+        .about-stat { padding: 28px 0; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1.4fr; gap: 24px; align-items: baseline; }
+        .about-stat:first-child { border-top: 1px solid var(--border); }
+        .stat-value { font-family: 'DM Serif Display', serif; font-size: 36px; line-height: 1; color: var(--green-dark); letter-spacing: -1px; }
+        .stat-label { font-size: 13px; line-height: 1.5; color: var(--gray); }
+        .stat-sublabel { font-size: 11px; color: var(--green-mid); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+
+        /* FEATURES */
+        .features { background: var(--green-tint); display: grid; grid-template-columns: repeat(4, 1fr); }
+        .feature { padding: 56px 44px; border-right: 1px solid rgba(0,0,0,0.07); }
+        .feature:last-child { border-right: none; }
+        .feat-icon { width: 48px; height: 48px; background: var(--green-mid); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
+        .feat-icon svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+        .feat-title { font-family: 'DM Serif Display', serif; font-size: 21px; color: var(--black); margin-bottom: 12px; }
+        .feat-desc { font-size: 13px; line-height: 1.7; color: var(--gray); }
+
+        /* REVIEWS */
+        .reviews { background: var(--white); padding: 110px 56px; }
+        .reviews-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 56px; }
+        .reviews-rating { display: flex; align-items: center; gap: 10px; }
+        .reviews-score { font-family: 'DM Serif Display', serif; font-size: 52px; color: var(--green-dark); line-height: 1; }
+        .reviews-stars { color: #F5A623; font-size: 18px; letter-spacing: 2px; }
+        .reviews-source { font-size: 12px; color: var(--gray); margin-top: 4px; }
+        .reviews-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .review-card { background: var(--cream); padding: 32px 28px; display: flex; flex-direction: column; gap: 16px; transition: transform 0.25s; }
+        .review-card:hover { transform: translateY(-4px); }
+        .review-stars { color: #F5A623; font-size: 14px; letter-spacing: 1px; }
+        .review-text { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 16px; line-height: 1.6; color: var(--black); flex: 1; }
+        .review-author { font-size: 12px; font-weight: 600; color: var(--green-dark); }
+        .review-date { font-size: 11px; color: var(--gray); margin-top: 2px; }
+        .review-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--border); margin-top: auto; }
+        .google-logo { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--gray); font-weight: 600; }
+        .google-g { width: 16px; height: 16px; }
+
+        /* PHOTO GRID */
+        .photos { background: var(--cream); padding: 110px 56px; }
+        .photos-header { margin-bottom: 48px; }
+        .photos-sub { font-size: 15px; color: var(--gray); margin-top: 16px; }
+        .photos-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+        .photo-item { aspect-ratio: 1; overflow: hidden; position: relative; cursor: pointer; }
+        .photo-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; transition: transform 0.4s; }
+        .photo-inner img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+        .photo-item:hover .photo-inner { transform: scale(1.06); }
+        .photo-inner svg { width: 32px; height: 32px; stroke: rgba(255,255,255,0.25); fill: none; stroke-width: 1.2; }
+        .photo-item:nth-child(1) .photo-inner { background: linear-gradient(135deg, #3D6B2A, #1B3A18); }
+        .photo-item:nth-child(2) .photo-inner { background: linear-gradient(135deg, #527A36, #2D5A22); }
+        .photo-item:nth-child(3) .photo-inner { background: linear-gradient(135deg, #6B9B4A, #3D6B2A); }
+        .photo-item:nth-child(4) .photo-inner { background: linear-gradient(135deg, #8DB87A, #4A7A35); }
+        .photo-item:nth-child(5) .photo-inner { background: linear-gradient(135deg, #4A7A35, #1B3A18); }
+        .photo-item:nth-child(6) .photo-inner { background: linear-gradient(135deg, #2D5A22, #1B3A18); }
+        .photo-item:nth-child(7) .photo-inner { background: linear-gradient(135deg, #6B9B4A, #2D5A22); }
+        .photo-item:nth-child(8) .photo-inner { background: linear-gradient(135deg, #527A36, #1B3A18); }
+        .photos-note { margin-top: 24px; font-size: 13px; color: var(--gray); text-align: center; }
+
+        /* LOCATION */
+        #location { display: grid; grid-template-columns: 1fr 1fr; }
+        .location-map-wrap { position: relative; overflow: hidden; min-height: 520px; }
+        .location-map-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; filter: saturate(0.6) brightness(1.05); }
+        .map-fallback { position: absolute; inset: 0; background: linear-gradient(135deg, #1B3A18, #3D6B2A); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; text-align: center; padding: 40px; }
+        .map-fallback-pin { font-size: 48px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3)); }
+        .map-fallback-address { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--white); line-height: 1.3; }
+        .map-fallback-link { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--white); text-decoration: none; border: 1px solid rgba(255,255,255,0.35); padding: 12px 24px; transition: background 0.25s; }
+        .map-fallback-link:hover { background: rgba(255,255,255,0.12); }
+        .location-info { padding: 80px 64px; background: var(--cream); display: flex; flex-direction: column; justify-content: center; gap: 48px; }
+        .loc-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--green-mid); margin-bottom: 14px; }
+        .loc-value { font-family: 'DM Serif Display', serif; font-size: 30px; line-height: 1.2; color: var(--black); }
+        .hours-table { width: 100%; border-collapse: collapse; }
+        .hours-table tr { border-bottom: 1px solid var(--border); }
+        .hours-table td { padding: 11px 0; font-size: 14px; }
+        .hours-table td:first-child { color: var(--gray); }
+        .hours-table td:last-child { text-align: right; font-weight: 500; }
+
+        /* CONTACT — light, no black */
+        #contact { background: var(--green-tint); display: grid; grid-template-columns: 1fr 1fr; }
+        .contact-info { padding: 100px 64px; border-right: 1px solid var(--border); }
+        .contact-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--green-mid); margin-bottom: 20px; }
+        .contact-title { font-family: 'DM Serif Display', serif; font-size: clamp(36px, 4.5vw, 56px); line-height: 1.0; color: var(--black); letter-spacing: -1.5px; margin-bottom: 24px; }
+        .contact-title .it { font-style: italic; }
+        .contact-desc { font-size: 15px; line-height: 1.75; color: var(--gray); margin-bottom: 44px; }
+        .contact-details { display: flex; flex-direction: column; gap: 16px; margin-bottom: 36px; }
+        .contact-detail { display: flex; align-items: center; gap: 14px; font-size: 14px; color: var(--gray); }
+        .detail-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-mid); flex-shrink: 0; }
+        .socials { display: flex; gap: 10px; }
+        .social-btn { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); color: var(--green-dark); text-decoration: none; background: var(--white); transition: all 0.25s; }
+        .social-btn svg { width: 18px; height: 18px; fill: currentColor; }
+        .social-btn:hover { background: var(--green-dark); color: var(--white); border-color: var(--green-dark); }
+        .contact-form-wrap { padding: 100px 64px; background: var(--white); }
+        .cform { display: flex; flex-direction: column; gap: 20px; }
+        .fgroup { display: flex; flex-direction: column; gap: 8px; }
+        .flabel { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); }
+        .finput, .ftextarea { background: var(--cream); border: 1px solid var(--border); color: var(--black); padding: 16px 20px; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; resize: none; transition: border-color 0.25s, background 0.25s; -webkit-appearance: none; }
+        .finput::placeholder, .ftextarea::placeholder { color: var(--gray); opacity: 0.6; }
+        .finput:focus, .ftextarea:focus { border-color: var(--green-mid); background: var(--white); }
+        .ftextarea { min-height: 120px; }
+        .fsubmit { background: var(--green-dark); color: var(--white); border: none; padding: 18px 44px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; align-self: flex-start; transition: background 0.25s, transform 0.2s; }
+        .fsubmit:hover { background: var(--green-mid); transform: translateY(-2px); }
+        .fsubmit.sent { background: var(--green-light); }
+
+        /* FOOTER — light green, no black */
+        footer { background: var(--green-tint); border-top: 1px solid var(--border); padding: 40px 56px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+        .footer-logo { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 30px; letter-spacing: 3px; text-transform: uppercase; color: var(--green-dark); }
+        .footer-sub { font-family: 'Cormorant Garamond', serif; font-size: 12px; font-style: italic; color: var(--green-mid); margin-top: 4px; letter-spacing: 1px; }
+        .footer-nav { display: flex; gap: 36px; list-style: none; }
+        .footer-nav a { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+        .footer-nav a:hover { color: var(--green-dark); }
+        .footer-copy { font-size: 12px; color: var(--gray); white-space: nowrap; }
+
+        /* REVEAL */
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+        .reveal.visible { opacity: 1; transform: none; }
+        .reveal-d1 { transition-delay: 0.1s; } .reveal-d2 { transition-delay: 0.2s; }
+        .reveal-d3 { transition-delay: 0.3s; } .reveal-d4 { transition-delay: 0.4s; }
+
+        /* RESPONSIVE */
+        @media (max-width: 1100px) {
+            .cakes-grid { grid-template-columns: repeat(4, 1fr); }
+            .about-inner { grid-template-columns: 1fr; gap: 56px; }
+            .features { grid-template-columns: 1fr 1fr; }
+            .feature { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.07); }
+            .feature:nth-child(odd) { border-right: 1px solid rgba(0,0,0,0.07); }
+            .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+            .photos-grid { grid-template-columns: repeat(4, 1fr); }
+            #location { grid-template-columns: 1fr; }
+            .location-map-wrap { min-height: 360px; }
+            #contact { grid-template-columns: 1fr; }
+            .contact-info { border-right: none; border-bottom: 1px solid var(--border); }
+        }
+        @media (max-width: 768px) {
+            #navbar { padding: 20px 24px; }
+            #navbar.scrolled { padding: 14px 24px; }
+            .nav-center, .nav-cta { display: none; }
+            .hero-body { padding: 0 24px 52px; flex-direction: column; align-items: flex-start; gap: 24px; }
+            .hero-right { align-items: flex-start; }
+            .hero-actions { justify-content: flex-start; }
+            .section, .about, .cakes { padding: 72px 24px; }
+            .menu-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+            .menu-item { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px; }
+            .cakes-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+            .features { grid-template-columns: 1fr; }
+            .feature { border-right: none !important; }
+            .reviews { padding: 72px 24px; }
+            .reviews-header { flex-direction: column; align-items: flex-start; gap: 24px; }
+            .reviews-grid { grid-template-columns: 1fr; }
+            .photos { padding: 72px 24px; }
+            .photos-grid { grid-template-columns: repeat(2, 1fr); }
+            .location-info { padding: 56px 24px; }
+            .contact-info, .contact-form-wrap { padding: 64px 24px; }
+            footer { padding: 32px 24px; flex-wrap: wrap; }
+            .footer-nav { flex-wrap: wrap; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+    <a href="#" class="nav-brand">
+        <span class="nav-logo">DORA</span>
+        <span class="nav-tagline" data-i18n="nav.tagline">Pure. Fresh. Matcha.</span>
+    </a>
+    <ul class="nav-center">
+        <li><a href="#menu" data-i18n="nav.menu">Menu</a></li>
+        <li><a href="#cakes" data-i18n="nav.cakes">Cakes</a></li>
+        <li><a href="#about" data-i18n="nav.story">Our Story</a></li>
+        <li><a href="#location" data-i18n="nav.visit">Visit</a></li>
+    </ul>
+    <div class="nav-right">
+        <button class="lang-toggle" id="langToggle" onclick="toggleLanguage()">СР</button>
+        <a href="#contact" class="nav-cta" data-i18n="nav.cta">Get in touch</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-body">
+        <div class="hero-left">
+            <p class="hero-label" data-i18n="hero.label">Belgrade's Matcha Bar</p>
+            <h1 class="hero-title" data-i18n-html="hero.title">Pure.<br><span class="it">Fresh.</span><br>Matcha.</h1>
+            <p class="hero-slogan" data-i18n="hero.slogan">"If matcha tastes like grass then I'm a cow."</p>
+        </div>
+        <div class="hero-right">
+            <div class="hero-actions">
+                <a href="#menu" class="btn-primary" data-i18n="hero.cta1">
+                    Explore Menu
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+                <a href="#cakes" class="btn-secondary" data-i18n="hero.cta2">New: Realistic Cakes</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-inner" id="marqueeInner">
+        <span class="marquee-item">Ceremonial Grade<span class="marquee-sep"></span></span>
+        <span class="marquee-item">Sourced from Japan<span class="marquee-sep"></span></span>
+        <span class="marquee-item">Handcrafted Drinks<span class="marquee-sep"></span></span>
+        <span class="marquee-item">Realistic Cakes<span class="marquee-sep"></span></span>
+        <span class="marquee-item">Seasonal Flavours<span class="marquee-sep"></span></span>
+        <span class="marquee-item">Hercegovačka 14a<span class="marquee-sep"></span></span>
+        <span class="marquee-item">Ceremonial Grade<span class="marquee-sep"></span></span>
+        <span class="marquee-item">Sourced from Japan<span class="marquee-sep"></span></span>
+        <span class="marquee-item">Handcrafted Drinks<span class="marquee-sep"></span></span>
+        <span class="marquee-item">Realistic Cakes<span class="marquee-sep"></span></span>
+        <span class="marquee-item">Seasonal Flavours<span class="marquee-sep"></span></span>
+        <span class="marquee-item">Hercegovačka 14a<span class="marquee-sep"></span></span>
+    </div>
+</div>
+
+<!-- MENU -->
+<section class="section" id="menu" style="padding-bottom:0;">
+    <div class="menu-header reveal">
+        <div>
+            <p class="eyebrow" data-i18n="menu.eyebrow">What we serve</p>
+            <h2 class="section-title">The <span class="it" data-i18n="menu.title">menu</span></h2>
+        </div>
+        <a href="#contact" class="text-link" data-i18n="menu.link">Visit us &rarr;</a>
+    </div>
+</section>
+<div style="padding:32px 56px 110px;background:var(--cream);">
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="matcha" data-i18n="menu.tab.matcha">Matcha</button>
+        <button class="tab-btn" data-tab="coffee" data-i18n="menu.tab.coffee">Coffee</button>
+        <button class="tab-btn" data-tab="extras" data-i18n="menu.tab.extras">Extras</button>
+    </div>
+    <div id="menu-list" class="menu-list"></div>
+</div>
+
+<!-- CAKES -->
+<section class="cakes" id="cakes">
+    <div class="cakes-header reveal">
+        <span class="new-badge" data-i18n="cakes.badge">✦ New</span>
+        <span class="cakes-eyebrow" data-i18n="cakes.eyebrow">Just arrived</span>
+    </div>
+    <h2 class="cakes-title reveal" data-i18n-html="cakes.title">Realistic<br><span class="it">Cakes</span></h2>
+    <p class="cakes-desc reveal" data-i18n="cakes.desc">Handcrafted hyper-realistic cakes that look exactly like their fruit namesakes. Each one a little work of edible art — too beautiful to eat, too delicious not to.</p>
+    <div class="cakes-grid">
+        <div class="cake-card reveal">
+            <div class="cake-visual cake-coffee"></div>
+            <div class="cake-name" data-i18n="cake.coffee">Coffee</div>
+        </div>
+        <div class="cake-card reveal reveal-d1">
+            <div class="cake-visual cake-pistachio"></div>
+            <div class="cake-name" data-i18n="cake.pistachio">Pistachio</div>
+        </div>
+        <div class="cake-card reveal reveal-d2">
+            <div class="cake-visual cake-blueberry"></div>
+            <div class="cake-name" data-i18n="cake.blueberry">Blueberry</div>
+        </div>
+        <div class="cake-card reveal reveal-d3">
+            <div class="cake-visual cake-peach"></div>
+            <div class="cake-name" data-i18n="cake.peach">Peach</div>
+        </div>
+        <div class="cake-card reveal reveal-d4">
+            <div class="cake-visual cake-strawberry"></div>
+            <div class="cake-name" data-i18n="cake.strawberry">Strawberry</div>
+        </div>
+        <div class="cake-card reveal">
+            <div class="cake-visual cake-mango"></div>
+            <div class="cake-name" data-i18n="cake.mango">Mango</div>
+        </div>
+        <div class="cake-card reveal reveal-d1">
+            <div class="cake-visual cake-raspberry"></div>
+            <div class="cake-name" data-i18n="cake.raspberry">Raspberry</div>
+        </div>
+    </div>
+    <p class="cakes-note" data-i18n="cakes.note">Available in-store · Limited quantities daily · Ask our team for today's selection</p>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+    <div class="about-inner">
+        <div>
+            <p class="eyebrow reveal" data-i18n="about.eyebrow">Our story</p>
+            <h2 class="about-title reveal">More than just<br>a <span class="it" data-i18n="about.title.accent">drink</span></h2>
+            <p class="about-body reveal" data-i18n="about.body1">Dora was born from a deep love for Japanese tea culture and the desire to share that quiet, mindful moment with Belgrade. Pure. Fresh. Matcha. — not just a tagline, it's how we do everything.</p>
+            <p class="about-body reveal" data-i18n="about.body2">We serve only ceremonial grade matcha, carefully selected from the finest tea fields in Japan, prepared with precision and care. No rush. No noise. Just you and your cup.</p>
+            <a href="#contact" class="about-link reveal" data-i18n="about.link">Come find us &rarr;</a>
+        </div>
+        <div class="about-stats reveal">
+            <div class="about-stat">
+                <div>
+                    <div class="stat-value">100%</div>
+                    <div class="stat-sublabel" data-i18n="stat1.label">Ceremonial Grade</div>
+                </div>
+                <div class="stat-label" data-i18n="stat1.desc">Only the highest grade matcha — never culinary, always ceremonial.</div>
+            </div>
+            <div class="about-stat">
+                <div>
+                    <div class="stat-value" data-i18n="stat2.value">Japan</div>
+                    <div class="stat-sublabel" data-i18n="stat2.label">Uji &amp; Nishio</div>
+                </div>
+                <div class="stat-label" data-i18n="stat2.desc">Sourced directly from Japan's most celebrated tea-growing regions.</div>
+            </div>
+            <div class="about-stat">
+                <div>
+                    <div class="stat-value" data-i18n="stat3.value">Every cup</div>
+                    <div class="stat-sublabel" data-i18n="stat3.label">Handcrafted</div>
+                </div>
+                <div class="stat-label" data-i18n="stat3.desc">Made to order, with precision and care, by our team of baristas.</div>
+            </div>
+            <div class="about-stat">
+                <div>
+                    <div class="stat-value" data-i18n="stat4.value">Oat · Soy</div>
+                    <div class="stat-sublabel" data-i18n="stat4.label">Plant-based</div>
+                </div>
+                <div class="stat-label" data-i18n="stat4.desc">Almond milk also available — every drink adaptable to your preference.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<div class="features">
+    <div class="feature reveal">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 5.25-7 13-7 13S5 14.25 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+        <div class="feat-title" data-i18n="feat1.title">Ceremonial Grade</div>
+        <div class="feat-desc" data-i18n="feat1.desc">Only the highest grade matcha, carefully selected from Japan's finest tea gardens.</div>
+    </div>
+    <div class="feature reveal reveal-d1">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 15.5"/></svg></div>
+        <div class="feat-title" data-i18n="feat2.title">Made Fresh Daily</div>
+        <div class="feat-desc" data-i18n="feat2.desc">All ingredients prepared fresh every day for the perfect taste in every cup.</div>
+    </div>
+    <div class="feature reveal reveal-d2">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="feat-title" data-i18n="feat3.title">Made with Love</div>
+        <div class="feat-desc" data-i18n="feat3.desc">Every drink crafted with passion and precision by our dedicated team of baristas.</div>
+    </div>
+    <div class="feature reveal reveal-d3">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div class="feat-title" data-i18n="feat4.title">Central Belgrade</div>
+        <div class="feat-desc" data-i18n="feat4.desc">Easy to reach at Hercegovačka 14a, right in the heart of the city.</div>
+    </div>
+</div>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+    <div class="reviews-header reveal">
+        <div>
+            <p class="eyebrow" data-i18n="reviews.eyebrow">Google Reviews</p>
+            <h2 class="section-title" data-i18n-html="reviews.title">What our<br><span class="it">customers say</span></h2>
+        </div>
+        <div>
+            <div class="reviews-rating">
+                <div class="reviews-score">4.9</div>
+                <div>
+                    <div class="reviews-stars">★★★★★</div>
+                    <div class="reviews-source" data-i18n="reviews.source">Based on Google Reviews</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="reviews-grid">
+        <div class="review-card reveal">
+            <div class="review-stars">★★★★★</div>
+            <div class="review-text" data-i18n="review1.text">"The matcha here is on another level. Perfect balance, ceremonial grade, and the cloud latte is something I dream about."</div>
+            <div>
+                <div class="review-author" data-i18n="review1.author">Ana M.</div>
+                <div class="review-date" data-i18n="review1.date">2 weeks ago</div>
+            </div>
+            <div class="review-footer">
+                <div class="google-logo">
+                    <svg class="google-g" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                    Google
+                </div>
+            </div>
+        </div>
+        <div class="review-card reveal reveal-d1">
+            <div class="review-stars">★★★★★</div>
+            <div class="review-text" data-i18n="review2.text">"Best matcha bar in Belgrade by far. The space is beautiful, the staff is warm, and the realistic cakes are absolutely stunning."</div>
+            <div>
+                <div class="review-author" data-i18n="review2.author">Nikola T.</div>
+                <div class="review-date" data-i18n="review2.date">1 month ago</div>
+            </div>
+            <div class="review-footer">
+                <div class="google-logo">
+                    <svg class="google-g" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                    Google
+                </div>
+            </div>
+        </div>
+        <div class="review-card reveal reveal-d2">
+            <div class="review-stars">★★★★★</div>
+            <div class="review-text" data-i18n="review3.text">"Found this place last month and I've been back every week. The strawberry matcha is absolute perfection. Highly recommend."</div>
+            <div>
+                <div class="review-author" data-i18n="review3.author">Mia L.</div>
+                <div class="review-date" data-i18n="review3.date">3 weeks ago</div>
+            </div>
+            <div class="review-footer">
+                <div class="google-logo">
+                    <svg class="google-g" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                    Google
+                </div>
+            </div>
+        </div>
+        <div class="review-card reveal reveal-d3">
+            <div class="review-stars">★★★★★</div>
+            <div class="review-text" data-i18n="review4.text">"Finally a matcha bar that actually knows what they're doing. Ceremonial grade, made properly. The cloud foam is next level."</div>
+            <div>
+                <div class="review-author" data-i18n="review4.author">Stefan V.</div>
+                <div class="review-date" data-i18n="review4.date">1 month ago</div>
+            </div>
+            <div class="review-footer">
+                <div class="google-logo">
+                    <svg class="google-g" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                    Google
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PHOTO GRID -->
+<section class="photos" id="photos">
+    <div class="photos-header reveal">
+        <p class="eyebrow" data-i18n="photos.eyebrow">At Dora</p>
+        <h2 class="section-title" data-i18n-html="photos.title">Our <span class="it">community</span></h2>
+        <p class="photos-sub" data-i18n="photos.sub">Tag us on Instagram @doramatchabar — we'd love to feature you.</p>
+    </div>
+    <div class="photos-grid">
+        <div class="photo-item"><div class="photo-inner"><img src="./images/1.jpg" alt="" srcset=""></div></div>
+        <div class="photo-item"><div class="photo-inner"><img src="./images/2.jpg" alt="" srcset=""></div></div>
+        <div class="photo-item"><div class="photo-inner"><img src="./images/3.jpg" alt="" srcset=""></div></div>
+        <div class="photo-item"><div class="photo-inner"><img src="./images/4.jpg" alt="" srcset=""></div></div>
+        <div class="photo-item"><div class="photo-inner"><img src="./images/5.jpg" alt="" srcset=""></div></div>
+        <div class="photo-item"><div class="photo-inner"><img src="./images/6.jpg" alt="" srcset=""></div></div>
+        <div class="photo-item"><div class="photo-inner"><img src="./images/7.jpg" alt="" srcset=""></div></div>
+        <div class="photo-item"><div class="photo-inner"><img src="./images/8.jpg" alt="" srcset=""></div></div>
+        <div class="photo-item"><div class="photo-inner"><img src="./images/7.jpg" alt="" srcset=""></div></div>
+        <div class="photo-item"><div class="photo-inner"><img src="./images/8.jpg" alt="" srcset=""></div></div>
+    </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location">
+    <div class="location-map-wrap">
+        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=20.4685,44.7990,20.4800,44.8090&layer=mapnik&marker=44.8040,20.4740" allowfullscreen="" loading="lazy" title="Dora Matcha Bar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"></iframe>
+        <div class="map-fallback" style="display:none;">
+            <div class="map-fallback-pin">📍</div>
+            <div class="map-fallback-address">Hercegovačka 14a<br>Belgrade, Serbia</div>
+            <a href="https://maps.google.com/?q=Hercegovacka+14a+Beograd" target="_blank" rel="noopener" class="map-fallback-link">Open in Google Maps →</a>
+        </div>
+    </div>
+    <div class="location-info">
+        <div class="reveal">
+            <p class="loc-label" data-i18n="loc.address">Address</p>
+            <p class="loc-value">Hercegovačka 14a<br>Beograd 11000</p>
+        </div>
+        <div class="reveal">
+            <p class="loc-label" data-i18n="loc.hours">Opening Hours</p>
+            <table class="hours-table">
+                <tbody>
+                    <tr><td data-i18n="hours.everyday">Every day</td><td>10:00 – 18:30</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="reveal">
+            <p class="loc-label" data-i18n="loc.follow">Follow Us</p>
+            <p class="loc-value" style="font-size:22px;">@doramatchabar</p>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="contact-info">
+        <p class="contact-eyebrow reveal" data-i18n="contact.eyebrow">Get in touch</p>
+        <h2 class="contact-title reveal" data-i18n-html="contact.title">Come visit or<br>drop us a <span class="it">message</span></h2>
+        <p class="contact-desc reveal" data-i18n="contact.desc">Questions about our menu, events, or catering? We'd love to hear from you.</p>
+        <div class="contact-details reveal">
+            <div class="contact-detail"><span class="detail-dot"></span>Hercegovačka 14a, Beograd</div>
+            <div class="contact-detail"><span class="detail-dot"></span><span data-i18n="contact.hours">Every day, 10:00 – 18:30</span></div>
+        </div>
+        <div class="socials reveal">
+            <a href="https://instagram.com/doramatchabar" target="_blank" rel="noopener" class="social-btn" title="Instagram">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://tiktok.com/@doramatchabar" target="_blank" rel="noopener" class="social-btn" title="TikTok">
+                <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.86 4.86 0 0 1-1.01-.07z"/></svg>
+            </a>
+        </div>
+    </div>
+    <div class="contact-form-wrap">
+        <form class="cform" id="contactForm">
+            <div class="fgroup">
+                <label class="flabel" data-i18n="form.name">Name</label>
+                <input type="text" class="finput" data-i18n-placeholder="form.name.ph" placeholder="Your name" required>
+            </div>
+            <div class="fgroup">
+                <label class="flabel" data-i18n="form.email">Email</label>
+                <input type="email" class="finput" data-i18n-placeholder="form.email.ph" placeholder="your@email.com" required>
+            </div>
+            <div class="fgroup">
+                <label class="flabel" data-i18n="form.phone">Phone (optional)</label>
+                <input type="tel" class="finput" placeholder="+381 60 000 0000">
+            </div>
+            <div class="fgroup">
+                <label class="flabel" data-i18n="form.message">Message</label>
+                <textarea class="ftextarea" data-i18n-placeholder="form.message.ph" placeholder="How can we help?" required></textarea>
+            </div>
+            <button type="submit" class="fsubmit" id="submitBtn" data-i18n="form.submit">Send message</button>
+        </form>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div>
+        <div class="footer-logo">DORA</div>
+        <div class="footer-sub" data-i18n="footer.tagline">Pure. Fresh. Matcha.</div>
+    </div>
+    <ul class="footer-nav">
+        <li><a href="#menu" data-i18n="nav.menu">Menu</a></li>
+        <li><a href="#cakes" data-i18n="nav.cakes">Cakes</a></li>
+        <li><a href="#about" data-i18n="nav.story">Our Story</a></li>
+        <li><a href="#location" data-i18n="nav.visit">Visit</a></li>
+        <li><a href="#contact" data-i18n="nav.cta">Get in touch</a></li>
+    </ul>
+    <p class="footer-copy">&copy; 2026 Dora Matcha Bar</p>
+</footer>
+
+<script>
+/* ---- Navbar scroll ---- */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
+
+/* ---- Scroll reveal ---- */
+const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+/* ---- Menu data ---- */
+const menuData = {
+    matcha: [
+        { name: 'Classic',          name_sr: 'Класик',           desc: 'Smooth ceremonial grade matcha — pure, earthy, and beautifully clean.',                                   desc_sr: 'Матча церемонијалне врсте — чиста, земљаста и прелепо балансирана.',           tag: 'Bestseller', tag_sr: 'Хит продаје', prices: [{ label:'S', label_sr:'S', val:'490 RSD' }, { label:'L', label_sr:'L', val:'590 RSD' }] },
+        { name: 'Flavoured',        name_sr: 'С укусом',         desc: 'Ceremonial matcha with your choice of seasonal flavour syrup.',                                           desc_sr: 'Матча са сирупом по вашем избору.',                                             tag: '',            tag_sr: '',            prices: [{ label:'S', label_sr:'S', val:'570 RSD' }, { label:'L', label_sr:'L', val:'670 RSD' }] },
+        { name: 'Cloud',            name_sr: 'Облак',            desc: 'Our signature cloud foam matcha — light, creamy, and irresistible.',                                      desc_sr: 'Наша матча с облак пеном — лагана, кремаста и неодољива.',                    tag: 'Signature',  tag_sr: 'Потписни',    prices: [{ label:'S', label_sr:'S', val:'650 RSD' }, { label:'L', label_sr:'L', val:'750 RSD' }] },
+    ],
+    coffee: [
+        { name: 'Espresso',         name_sr: 'Еспресо',          desc: 'A perfectly pulled single or double shot.',                                                                desc_sr: 'Савршено извучен један или двоструки шот.',                                    tag: '',            tag_sr: '',            prices: [{ label:'Single', label_sr:'Сингл', val:'260 RSD' }, { label:'Double', label_sr:'Дабл', val:'340 RSD' }] },
+        { name: 'Americano',        name_sr: 'Американо',        desc: 'Espresso diluted with hot water — bold and straightforward.',                                             desc_sr: 'Еспресо разређен топлом водом — снажан и директан.',                          tag: '',            tag_sr: '',            prices: [{ label:'S', label_sr:'S', val:'330 RSD' }, { label:'L', label_sr:'L', val:'390 RSD' }] },
+        { name: 'Cappuccino',       name_sr: 'Капучино',         desc: 'Espresso with steamed milk and a thick layer of microfoam.',                                              desc_sr: 'Еспресо с парним млеком и густом микропеном.',                                 tag: '',            tag_sr: '',            prices: [{ label:'S', label_sr:'S', val:'360 RSD' }, { label:'L', label_sr:'L', val:'420 RSD' }] },
+        { name: 'Flat White',       name_sr: 'Флет вајт',        desc: 'Ristretto-based espresso with velvety steamed milk.',                                                     desc_sr: 'Ристрето с баршунастим парним млеком.',                                        tag: '',            tag_sr: '',            prices: [{ label:'S', label_sr:'S', val:'400 RSD' }, { label:'L', label_sr:'L', val:'460 RSD' }] },
+        { name: 'Latte',            name_sr: 'Лате',             desc: 'Espresso and steamed milk — classic, comforting, and well-balanced.',                                     desc_sr: 'Еспресо и парно млеко — класично и умирујуће.',                               tag: '',            tag_sr: '',            prices: [{ label:'S', label_sr:'S', val:'400 RSD' }, { label:'L', label_sr:'L', val:'460 RSD' }] },
+        { name: 'Flavoured Latte',  name_sr: 'Лате с укусом',    desc: 'Your favourite latte with a touch of seasonal flavour syrup.',                                            desc_sr: 'Омиљени лате с додатком сезонског сирупа.',                                   tag: '',            tag_sr: '',            prices: [{ label:'S', label_sr:'S', val:'410 RSD' }, { label:'L', label_sr:'L', val:'470 RSD' }] },
+        { name: 'Cloud Latte',      name_sr: 'Облак лате',       desc: 'Espresso beneath our signature cloud foam — soft, creamy, and indulgent.',                               desc_sr: 'Еспресо испод наше облак пене — мекано и кремасто.',                          tag: 'Signature',  tag_sr: 'Потписни',    prices: [{ label:'S', label_sr:'S', val:'480 RSD' }, { label:'L', label_sr:'L', val:'540 RSD' }] },
+    ],
+    extras: [
+        { name: 'Extra Shot Matcha',  name_sr: 'Додатна матча',   desc: 'An extra dose of ceremonial grade matcha.',                   desc_sr: 'Додатна доза матче церемонијалне врсте.',    tag: '', tag_sr: '', single: '+120 RSD' },
+        { name: 'Extra Shot Syrup',   name_sr: 'Додатни сируп',   desc: 'Add more of your chosen flavour syrup.',                      desc_sr: 'Додатни сируп по вашем избору.',             tag: '', tag_sr: '', single: '+80 RSD'  },
+        { name: 'Extra Shot Coffee',  name_sr: 'Додатна кафа',    desc: 'An additional espresso shot to your drink.',                  desc_sr: 'Додатни шот еспреса у пиће.',               tag: '', tag_sr: '', single: '+80 RSD'  },
+    ]
+};
+
+let currentTab = 'matcha';
+let currentLang = localStorage.getItem('dora-lang') || 'en';
+
+function renderMenu(tab, lang) {
+    lang = lang || currentLang;
+    const list = document.getElementById('menu-list');
+    const items = menuData[tab];
+    list.innerHTML = items.map(item => {
+        const name = lang === 'sr' ? item.name_sr : item.name;
+        const desc = lang === 'sr' ? item.desc_sr : item.desc;
+        const tag  = lang === 'sr' ? item.tag_sr  : item.tag;
+        const pricesHtml = item.prices
+            ? item.prices.map(p => `<div class="price-block"><div class="price-label">${lang==='sr'?p.label_sr:p.label}</div><div class="price-value">${p.val}</div></div>`).join('')
+            : `<div class="price-single">${item.single}</div>`;
+        return `<div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">${name}</div><div class="menu-item-desc">${desc}</div>${tag ? `<div class="menu-item-tag">${tag}</div>` : ''}</div><div class="menu-item-prices">${pricesHtml}</div></div>`;
+    }).join('');
+}
+
+renderMenu('matcha');
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentTab = btn.dataset.tab;
+        renderMenu(currentTab);
+    });
+});
+
+/* ---- i18n translations ---- */
+const translations = {
+    en: {
+        'nav.tagline':'Pure. Fresh. Matcha.','nav.menu':'Menu','nav.cakes':'Cakes','nav.story':'Our Story','nav.visit':'Visit','nav.cta':'Get in touch',
+        'hero.label':"Belgrade's Matcha Bar",'hero.title':'Pure.<br><span class="it">Fresh.</span><br>Matcha.','hero.slogan':'"If matcha tastes like grass then I\'m a cow."','hero.cta1':'Explore Menu','hero.cta2':'New: Realistic Cakes',
+        'menu.eyebrow':'What we serve','menu.title':'menu','menu.link':'Visit us →','menu.tab.matcha':'Matcha','menu.tab.coffee':'Coffee','menu.tab.extras':'Extras',
+        'cakes.badge':'✦ New','cakes.eyebrow':'Just arrived','cakes.title':'Realistic<br><span class="it">Cakes</span>','cakes.desc':'Handcrafted hyper-realistic cakes that look exactly like their fruit namesakes. Each one a little work of edible art — too beautiful to eat, too delicious not to.','cakes.note':'Available in-store · Limited quantities daily · Ask our team for today\'s selection',
+        'cake.coffee':'Coffee','cake.pistachio':'Pistachio','cake.blueberry':'Blueberry','cake.peach':'Peach','cake.strawberry':'Strawberry','cake.mango':'Mango','cake.raspberry':'Raspberry',
+        'about.eyebrow':'Our story','about.title.accent':'drink','about.body1':'Dora was born from a deep love for Japanese tea culture and the desire to share that quiet, mindful moment with Belgrade. Pure. Fresh. Matcha. — not just a tagline, it\'s how we do everything.','about.body2':'We serve only ceremonial grade matcha, carefully selected from the finest tea fields in Japan, prepared with precision and care. No rush. No noise. Just you and your cup.','about.link':'Come find us →',
+        'stat1.label':'Ceremonial Grade','stat1.desc':'Only the highest grade matcha — never culinary, always ceremonial.',
+        'stat2.value':'Japan','stat2.label':'Uji & Nishio','stat2.desc':"Sourced directly from Japan's most celebrated tea-growing regions.",
+        'stat3.value':'Every cup','stat3.label':'Handcrafted','stat3.desc':'Made to order, with precision and care, by our team of baristas.',
+        'stat4.value':'Oat · Soy','stat4.label':'Plant-based','stat4.desc':'Almond milk also available — every drink adaptable to your preference.',
+        'feat1.title':'Ceremonial Grade','feat1.desc':"Only the highest grade matcha, carefully selected from Japan's finest tea gardens.",
+        'feat2.title':'Made Fresh Daily','feat2.desc':'All ingredients prepared fresh every day for the perfect taste in every cup.',
+        'feat3.title':'Made with Love','feat3.desc':'Every drink crafted with passion and precision by our dedicated team of baristas.',
+        'feat4.title':'Central Belgrade','feat4.desc':'Easy to reach at Hercegovačka 14a, right in the heart of the city.',
+        'reviews.eyebrow':'Google Reviews','reviews.title':'What our<br><span class="it">customers say</span>','reviews.source':'Based on Google Reviews',
+        'review1.text':'"The matcha here is on another level. Perfect balance, ceremonial grade, and the cloud latte is something I dream about."','review1.author':'Ana M.','review1.date':'2 weeks ago',
+        'review2.text':'"Best matcha bar in Belgrade by far. The space is beautiful, the staff is warm, and the realistic cakes are absolutely stunning."','review2.author':'Nikola T.','review2.date':'1 month ago',
+        'review3.text':'"Found this place last month and I\'ve been back every week. The strawberry matcha is absolute perfection. Highly recommend."','review3.author':'Mia L.','review3.date':'3 weeks ago',
+        'review4.text':'"Finally a matcha bar that actually knows what they\'re doing. Ceremonial grade, made properly. The cloud foam is next level."','review4.author':'Stefan V.','review4.date':'1 month ago',
+        'photos.eyebrow':'At Dora','photos.title':'Our <span class="it">community</span>','photos.sub':'Tag us on Instagram @doramatchabar — we\'d love to feature you.','photos.note':'Replace these placeholders with your own photos — drag & drop images into the images/gallery/ folder.',
+        'loc.address':'Address','loc.hours':'Opening Hours','loc.follow':'Follow Us','hours.everyday':'Every day',
+        'contact.eyebrow':'Get in touch','contact.title':'Come visit or<br>drop us a <span class="it">message</span>','contact.desc':"Questions about our menu, events, or catering? We'd love to hear from you.",'contact.hours':'Every day, 10:00 – 18:30',
+        'form.name':'Name','form.name.ph':'Your name','form.email':'Email','form.email.ph':'your@email.com','form.phone':'Phone (optional)','form.message':'Message','form.message.ph':'How can we help?','form.submit':'Send message','form.sent':'Sent ✓',
+        'footer.tagline':'Pure. Fresh. Matcha.',
+    },
+    sr: {
+        'nav.tagline':'Чисто. Свеже. Матча.','nav.menu':'Мени','nav.cakes':'Торте','nav.story':'Наша прича','nav.visit':'Посетите','nav.cta':'Контакт',
+        'hero.label':'Матча бар у Београду','hero.title':'Чисто.<br><span class="it">Свеже.</span><br>Матча.','hero.slogan':'"Ако матча има укус траве, онда сам ја крава."','hero.cta1':'Погледај мени','hero.cta2':'Ново: Реалистичне торте',
+        'menu.eyebrow':'Шта послужујемо','menu.title':'мени','menu.link':'Посетите нас →','menu.tab.matcha':'Матча','menu.tab.coffee':'Кафа','menu.tab.extras':'Додаци',
+        'cakes.badge':'✦ Ново','cakes.eyebrow':'Управо пристигло','cakes.title':'Реалистичне<br><span class="it">торте</span>','cakes.desc':'Ручно рађене хипер-реалистичне торте које изгледају потпуно као право воће. Свака је мало уметничко дело — прелепе за јести, превкусне да одолите.','cakes.note':'Доступно у продавници · Ограничене количине · Питајте наш тим за данашњу понуду',
+        'cake.coffee':'Кафа','cake.pistachio':'Пистаћ','cake.blueberry':'Боровница','cake.peach':'Бресква','cake.strawberry':'Јагода','cake.mango':'Манго','cake.raspberry':'Малина',
+        'about.eyebrow':'Наша прича','about.title.accent':'пиће','about.body1':'Дора је рођена из дубоке љубави према јапанској култури чаја и жеље да подели тај тихи, свесни тренутак са Београдом. Чисто. Свеже. Матча. — није само слоган, то је начин на који радимо све.','about.body2':'Послужујемо само матчу церемонијалне врсте, пажљиво одабрану из најбољих вртова чаја у Јапану, припремљену с прецизношћу и бригом. Нема журбе. Нема буке. Само ви и ваша шоља.','about.link':'Пронађите нас →',
+        'stat1.label':'Церемонијалне врсте','stat1.desc':'Само матча највишег квалитета — никад кулинарска, увек церемонијалне врсте.',
+        'stat2.value':'Јапан','stat2.label':'Уји & Нишио','stat2.desc':'Директно из најпознатијих региона узгоја чаја у Јапану.',
+        'stat3.value':'Свака шоља','stat3.label':'Ручно рађена','stat3.desc':'Израђено по наруџбини, с прецизношћу и бригом нашег тима баристи.',
+        'stat4.value':'Зоб · Соја','stat4.label':'Биљске опције','stat4.desc':'Млеко од бадема такође доступно — свако пиће прилагодљиво.',
+        'feat1.title':'Церемонијална врста','feat1.desc':'Само матча највишег квалитета, пажљиво одабрана из најбољих вртова чаја у Јапану.',
+        'feat2.title':'Свако дан свеже','feat2.desc':'Сви састојци свежи сваки дан за савршен укус у свакој шољи.',
+        'feat3.title':'Направљено с љубављу','feat3.desc':'Свако пиће спремљено са страшћу и прецизношћу нашег посвећеног тима.',
+        'feat4.title':'Центар Београда','feat4.desc':'Лако доступно на Херцеговачкој 14а, у срцу града.',
+        'reviews.eyebrow':'Google рецензије','reviews.title':'Шта кажу наши<br><span class="it">гости</span>','reviews.source':'На основу Google рецензија',
+        'review1.text':'"Матча овде је на другом нивоу. Савршена равнотежа, церемонијалне врсте, а облак лате је нешто о чему сањам."','review1.author':'Ана М.','review1.date':'Пре 2 недеље',
+        'review2.text':'"Убедљиво најбољи матча бар у Београду. Простор је прелеп, особље је топло, а реалистичне торте су апсолутно задивљујуће."','review2.author':'Никола Т.','review2.date':'Пре месец дана',
+        'review3.text':'"Открила сам ово место прошлог месеца и враћам се сваке недеље. Матча с јагодом је апсолутно савршенство."','review3.author':'Миа Л.','review3.date':'Пре 3 недеље',
+        'review4.text':'"Коначно матча бар који заиста зна шта ради. Церемонијалне врсте, правилно припремљена. Пена је на другом нивоу."','review4.author':'Стефан В.','review4.date':'Пре месец дана',
+        'photos.eyebrow':'У Дори','photos.title':'Наша <span class="it">заједница</span>','photos.sub':'Означи нас на Инстаграму @doramatchabar — волели бисмо да те истакнемо.','photos.note':'Замените ове слике вашим фотографијама.',
+        'loc.address':'Адреса','loc.hours':'Радно време','loc.follow':'Пратите нас','hours.everyday':'Сваки дан',
+        'contact.eyebrow':'Контакт','contact.title':'Свратите или нам<br>пошаљите <span class="it">поруку</span>','contact.desc':'Питања о менију, евентима или кетерингу? Радо ћемо вас чути.','contact.hours':'Сваки дан, 10:00 – 18:30',
+        'form.name':'Ime','form.name.ph':'Ваше ime','form.email':'Imejl','form.email.ph':'vaš@email.com','form.phone':'Telefon (neobavezno)','form.message':'Poruka','form.message.ph':'Kako možemo da pomognemo?','form.submit':'Pošalji poruku','form.sent':'Poslato ✓',
+        'footer.tagline':'Чисто. Свеже. Матча.',
+    }
+};
+
+function setLanguage(lang) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[lang][key] !== undefined) el.textContent = translations[lang][key];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.dataset.i18nHtml;
+        if (translations[lang][key] !== undefined) el.innerHTML = translations[lang][key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.dataset.i18nPlaceholder;
+        if (translations[lang][key] !== undefined) el.placeholder = translations[lang][key];
+    });
+    // Update tab buttons text
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        const key = 'menu.tab.' + btn.dataset.tab;
+        if (translations[lang][key]) btn.textContent = translations[lang][key];
+    });
+    renderMenu(currentTab, lang);
+    currentLang = lang;
+    localStorage.setItem('dora-lang', lang);
+    document.getElementById('langToggle').textContent = lang === 'en' ? 'СР' : 'EN';
+    document.documentElement.lang = lang === 'sr' ? 'sr' : 'en';
+}
+
+function toggleLanguage() {
+    setLanguage(currentLang === 'en' ? 'sr' : 'en');
+}
+
+// Apply saved language on load
+if (currentLang === 'sr') setLanguage('sr');
+
+/* ---- Contact form ---- */
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = translations[currentLang]['form.sent'] || 'Sent ✓';
+    btn.classList.add('sent'); btn.disabled = true;
+    setTimeout(() => {
+        btn.textContent = translations[currentLang]['form.submit'] || 'Send message';
+        btn.classList.remove('sent'); btn.disabled = false; this.reset();
+    }, 3500);
+});
+</script>
+</body>
+</html>
